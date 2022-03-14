@@ -3,6 +3,10 @@
 
 ### 1. Jelenlegi helyzet
 
+A CafeBabes vállalkozásunk szörfdeszkákat árusít. Fontos számunkra, hogy a lehető legkisebb környezeti lábnyomot hagyjuk magunk után, ezért a nálunk kapható összes deszka vagy újrahasznosított alapanyagból, vagy biológiailag lebomló anyagból készül.
+Különösen figyelünk a termékek csomagolására is, nem használunk semmilyen műanyag csomagolóanyagot sem. Jelenleg csak vásárokban, illetve az online piactereken (Marketplace, Jófogás, Ebay) áruljuk termékeinket.
+Minden megrendelés telefonon vagy e-mailen keresztül történik, ezeket pedig egy egyszerű Excel táblázatban vezetjük. Ebben a táblázatban vezetve van, hogy ki mit vásárolt, a termékekből hány darabot kért, illetve, hogy hova kell küldenünk a csomagot.
+Minden vásárlás utánvétes csomagküldéssel kerül feladásra, kérhető csomagautomatába, illetve házhozszállítással is. Sajnos az Excel táblázatban való nyilvántartás sokszor problémát okozott, nem került bele egy rendelés, rosszul lett felvéve/beírva és a végén előfordult, hogy az ügyfél rossz terméket kapott, illetve olyan is, hogy egyáltalán nem kapott terméket.
 
 ## Megrendelői igényspecifikáció (megrendelő által megfogalmazott igények, célok, követelmények):
 
