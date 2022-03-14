@@ -8,9 +8,13 @@ Különösen figyelünk a termékek csomagolására is, nem használunk semmilye
 Minden megrendelés telefonon vagy e-mailen keresztül történik, ezeket pedig egy egyszerű Excel táblázatban vezetjük. Ebben a táblázatban vezetve van, hogy ki mit vásárolt, a termékekből hány darabot kért, illetve, hogy hova kell küldenünk a csomagot.
 Minden vásárlás utánvétes csomagküldéssel kerül feladásra, kérhető csomagautomatába, illetve házhozszállítással is. Sajnos az Excel táblázatban való nyilvántartás sokszor problémát okozott, nem került bele egy rendelés, rosszul lett felvéve/beírva és a végén előfordult, hogy az ügyfél rossz terméket kapott, illetve olyan is, hogy egyáltalán nem kapott terméket.
 
-## Megrendelői igényspecifikáció (megrendelő által megfogalmazott igények, célok, követelmények):
 
 ### 2. Megrendelői vízió (Vágyálom)
+
+Vállalkozásunk bővítése érdekében szeretnénk üzletünknek honlapot és egyúttal az adminisztrációnkat támogató rendszert. Szeretnénk, hogy ügyfeleink minden termékünket könnyedén megtalálhassák egy igényes és szép weboldalon.
+Szeretnénk nyilvántartásunkat online kezelni, hogy az ügyvezetők bárhonnan rá tudjanak nézni az aktuális információkra. A weboldal könnyen üzemeltethető legyen, különböző szintű belépési rendszerrel (admin, user). Termékeket fel lehessen tölteni, módosítani, különböző kategóriákba besorolni. 
+A kategóriákat ugyanúgy lehessen bővíteni, szerkeszteni, törölni. Kimutatásokat szeretnénk elérni az oldalon keresztül, illetve egy áttekinthető oldalt, ahol azonnal látjuk hány regisztrált ügyfelünk van, hány megrendelés és azok milyen státuszban vannak, valamint hány termék van aktív, illetve törölt állapotban.
+Szeretnénk ha az ügyfelek a vásárolt termékekről véleményt is írhatnának(szöveges illetve csillagos értékelést egyaránt), de csak a megrendelt temékek kiszállítása után. Természetesen az ügyfelek regisztrációt követően vissza tudják nézni a korábbi rendelésüket, valamint azok állapotát.
 
 
 ### 3. Jelenlegi üzleti folyamatok
