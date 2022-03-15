@@ -19,18 +19,18 @@ Szeretnénk ha az ügyfelek a vásárolt termékekről véleményt is írhatnán
 
 ### 3. Jelenlegi üzleti folyamatok
 
-3.1 Személyes értékesítés:
+##### 3.1 Személyes értékesítés:
 Hagyományos módszerrel történik: A vásárló személyesen kiválasztja az üzletben kiállított terméket, majd az eladó munkatársunknál kifizeti azt.
 
-3.2 Online értékesítés:
+##### 3.2 Online értékesítés:
 ```mermaid
 flowchart TD;
-A("Egy munkatársunk a termékeket egyesével feltölti\nkülönböző online értékesítési platformokra. (Ebay, Amazon stb.)");
-B("A feltöltött termékekről Excel\ntáblázatban nyilvántartást vezet.");
-C("Fogadja a bejövő hívásokat,\na megrendeléseket rögzíti a táblázatban.");
-D("A megrendelést leadja az üzletben dolgozó munkatársaknak,\nakik összekészítik és becsomagolják a megrendelt termékeket.");
-E("A kész csomagot átadja a futárnak.");
-F("Frissíti az Excel táblázatot,\nújabb termékeket tölt fel online piacterekre.");
+A("Egy munkatársunk a termékeket egyesével feltölti\nkülönböző online értékesítési platformokra (Ebay, Amazon stb.)");
+B("A feltöltött termékekről Excel\ntáblázatban nyilvántartást vezet");
+C("Fogadja a bejövő hívásokat,\na megrendeléseket rögzíti a táblázatban");
+D("A megrendelést leadja az üzletben dolgozó munkatársaknak,\nakik összekészítik és becsomagolják a megrendelt termékeket");
+E("A kész csomagot átadja a futárnak");
+F("Frissíti az Excel táblázatot,\nújabb termékeket tölt fel online piacterekre");
 A-->B;
 B-->C;
 C-->D;
@@ -41,6 +41,23 @@ F-->A;
 
 ### 4. Igényelt üzleti folyamatok
 
+##### 4.1 Személyes értékesítés:
+Nem változik
+
+##### 4.2 Online értékesítés:
+```mermaid
+flowchart TD;
+A("Egy munkatársunk az új termékeket feltölti webshopunkba");
+B("A webshop felületén látja, ha érkezik egy megrendelés");
+C("A felületen frissíti\na megrendelés státuszát");
+D("A megrendelés tartalmát az üzletben\nösszekészítik és becsomagolják");
+E("A kész csomagot átadják a futárnak.");
+A-->B;
+B-->C;
+C-->D;
+D-->E;
+E-->B;
+```
 
 ### 5. A rendszerre vonatkozó szabályok
 
