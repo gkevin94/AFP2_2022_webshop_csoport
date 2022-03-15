@@ -52,6 +52,7 @@ K07|V1.0|Bővíthetőség|A termékek, valamint a felhasználók számának bőv
 
 - **Adminisztrátor**: Az a személy, aki a rendszert felügyeli, üzemelteti, valamint minden lehetséges jogosultsággal rendelkezik. Mivel a rendszer jelszó és felhasználói név alapján azonosít, így az minősül adminisztrátornak, akit a rendszer ezek alapján annak azonosít.
 - **Felhasználó**: Az a személy, akit a rendszer a felhasználói nevének és jelszavának azonosításával annak azonosít. A felhasználó képes a kosarába helyezni termékeket, azokat módosítani, megrendelést és értékelést leadni.
+- **Külső felhasználó**: A felhasználók azon csoportja, melynek hozzáférési jogai jelentősen korlátozottak. A rendszert jelszó nélkül vehetik igénybe, természetesen az őket meg nem illető jogokat, és az ezzel járó korlátozásokat a rendszer biztosítja. Ennek ellenére tájékozódhatnak számukra hasznos információkról, böngészhetik a termékeket, láthatják ezek értékeléseit.
 - **Utánvétes csomagküldés**: Az utánvétes csomagküldés főleg a vevőnek hasznos, mert a csomag ellenértékét csak akkor kell kifizetnie, amikor ténylegesen átveszi a csomagot.
 - **Csillagos értékelés**: A vásárlók 1-től 5-ig értékelhetik a termékeket, ami az adott számú csillag kijelölésével történik. A többi látogató minden terméknél az összesített értékelést látja.
 - **Online értékesítési platform**: Olyan internetes piactér, ahol a vásárlók ugyanúgy válogathatnak a termékekből, mintha a valóságban tennék ugyanezt.
