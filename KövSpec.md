@@ -19,6 +19,16 @@ Szeretnénk ha az ügyfelek a vásárolt termékekről véleményt is írhatnán
 
 ### 3. Jelenlegi üzleti folyamatok
 
+3.1 Személyes értékesítés:
+Hagyományos módszerrel történik: A vásárló személyesen kiválasztja az üzletben kiállított terméket, majd az eladó munkatársunknál kifizeti azt.
+
+3.2 Online értéksesítés:
+Egy munkatársunk a termékeket egyesével feltölti különböző online értékesítési platformokra. (Ebay, Amazon stb.)
+    >> A feltöltött termékekről egy táblázatban nyilvántartást vezet.
+        >> Fogadja a bejövő hívásokat, üzeneteket, a megrendeléseket rögzíti a táblázatban.
+            >> A megrendelést leadja az üzletben dolgozó munkatársaknak, akik összekészítik és becsomagolják a megrendelt termékeket.
+                >> A kész csomagot átadja a futárnak.
+                    >> Frissíti az Excel táblázatot, újabb termékeket tölt fel online piacterekre.
 
 ### 4. Igényelt üzleti folyamatok
 
