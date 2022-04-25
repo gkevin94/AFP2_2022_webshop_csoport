@@ -49,4 +49,8 @@ public class ProductService {
     public Product getProductById(@PathVariable long id) {
         return productDao.getProductById(id);
     }
+
+    public List<Product> listAdviceProducts() {
+        return productDao.listAdviceProducts();
+    }
 }
