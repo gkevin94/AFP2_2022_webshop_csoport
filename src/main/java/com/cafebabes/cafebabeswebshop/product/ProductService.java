@@ -3,6 +3,7 @@ package com.cafebabes.cafebabeswebshop.product;
 import com.cafebabes.cafebabeswebshop.category.Category;
 import com.cafebabes.cafebabeswebshop.category.CategoryDao;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -43,5 +44,9 @@ public class ProductService {
 
     public void deleteProduct(long id) {
         productDao.deleteProduct(id);
+    }
+
+    public Product getProductById(@PathVariable long id) {
+        return productDao.getProductById(id);
     }
 }
