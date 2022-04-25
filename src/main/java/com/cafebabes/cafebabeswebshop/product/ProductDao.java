@@ -68,4 +68,16 @@ public class ProductDao {
         }, keyHolder);
         return keyHolder.getKey().longValue();
     }
+
+    public void updateProduct(long id, Product product) {
+        jdbcTemplate.update("UPDATE products SET code = ?, address = ?, name = ?, manufacture = ?, price = ?, " +
+                        "category_id = (SELECT id FROM category WHERE name=?) WHERE id = ?",
+                product.getCode(),
+                product.getAddress(),
+                product.getName(),
+                product.getManufacture(),
+                product.getPrice(),
+                product.getCategory().getName(),
+                id);
+    }
 }
