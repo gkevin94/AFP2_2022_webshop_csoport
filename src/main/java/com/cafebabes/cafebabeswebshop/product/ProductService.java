@@ -28,4 +28,8 @@ public class ProductService {
         categoryDao.createCategoryAndGetId(product.getCategory());
         return productDao.saveProductAndGetId(product);
     }
+
+    public void updateProducts(long id, Product product) {
+        productDao.updateProduct(id, product);
+    }
 }
