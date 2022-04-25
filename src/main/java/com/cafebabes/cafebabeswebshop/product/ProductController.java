@@ -79,4 +79,9 @@ public class ProductController {
     public Product getProductById(@PathVariable long id) {
         return productService.getProductById(id);
     }
+
+    @GetMapping("/advice")
+    public List<Product> listAdvicedProducts(){
+        return productService.listAdviceProducts();
+    }
 }
