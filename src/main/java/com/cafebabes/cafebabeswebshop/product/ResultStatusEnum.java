@@ -1,4 +1,6 @@
 package com.cafebabes.cafebabeswebshop.product;
 
-public class ResultStatusEnum {
+public enum ResultStatusEnum {
+    OK,
+    NOT_OK;
 }
