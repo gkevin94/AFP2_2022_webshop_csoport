@@ -8,5 +8,8 @@ public class ProductController {
     private ProductService productService;
     private ProductValidator validator;
 
-
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+        this.validator = new ProductValidator();
+    }
 }
