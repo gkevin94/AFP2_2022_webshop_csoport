@@ -36,4 +36,8 @@ public class ProductService {
     public List<Product> getProductsWithStartAndSize(int start, int size) {
         return productDao.getProductsWithStartAndSize(start, size);
     }
+
+    public List<Product> getProductsWithStartAndSizeAndCategory(int start, int size, Category category) {
+        return productDao.getProductsWithStartAndSizeAndCategory(start, size, category);
+    }
 }
