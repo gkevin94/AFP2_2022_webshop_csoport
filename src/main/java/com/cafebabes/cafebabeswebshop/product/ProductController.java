@@ -69,4 +69,9 @@ public class ProductController {
             return productService.getProductsWithStartAndSize(start,size);
         return productService.getProductsWithStartAndSizeAndCategory(start, size, category);
     }
+
+    @DeleteMapping("/products/{id}")
+    public void deleteProduct(@PathVariable long id) {
+        productService.deleteProduct(id);
+    }
 }
