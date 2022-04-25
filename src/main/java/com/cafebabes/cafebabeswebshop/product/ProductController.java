@@ -1,5 +1,6 @@
 package com.cafebabes.cafebabeswebshop.product;
 
+import com.cafebabes.cafebabeswebshop.category.Category;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,5 +61,12 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getProducts() {
         return productService.getProducts();
+    }
+
+    @PostMapping("/products/{start}/{size}")
+    public List<Product> getProductsWithStartAndSize(@PathVariable int start, @PathVariable int size, @RequestBody(required = false) Category category) {
+        if (category==null)
+            return productService.getProductsWithStartAndSize(start,size);
+        return productService.getProductsWithStartAndSizeAndCategory(start, size, category);
     }
 }
