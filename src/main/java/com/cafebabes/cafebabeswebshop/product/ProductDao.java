@@ -89,4 +89,14 @@ public class ProductDao {
                 start
         );
     }
+
+    public List<Product> getProductsWithStartAndSizeAndCategory(int start, int size, Category category) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_JOIN_CATEGORY +
+                        "WHERE product_status = 'ACTIVE' AND category.name = ? ORDER BY category.ordinal, products.name, manufacture LIMIT ? OFFSET ?",
+                PRODUCT_ROW_MAPPER,
+                category.getName(),
+                size,
+                start
+        );
+    }
 }
