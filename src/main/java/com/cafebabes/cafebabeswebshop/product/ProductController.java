@@ -1,8 +1,7 @@
 package com.cafebabes.cafebabeswebshop.product;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DataAccessException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +24,21 @@ public class ProductController {
             return productService.getProduct(address);
         } else {
             return new ResultStatus(ResultStatusEnum.NOT_OK, "Invalid address");
+        }
+    }
+
+    @PostMapping("/products")
+    public ResultStatus saveProductAndGetId(@RequestBody Product product) {
+        validator = new ProductValidator();
+        if (validator.isValidProduct(product)) {
+            try {
+                long id = productService.saveProductAndGetId(product);
+                return new ResultStatus(ResultStatusEnum.OK, String.format("Termék sikeresen hozzáadva! (termék id: %d )", id));
+            } catch (DataAccessException sql) {
+                return new ResultStatus(ResultStatusEnum.NOT_OK, "Termék cím vagy kód már szerepel másik terméknél");
+            }
+        } else {
+            return new ResultStatus(ResultStatusEnum.NOT_OK, "Minden adat kitöltendő, maximális ár: 2.000.000 Ft");
         }
     }
 }
