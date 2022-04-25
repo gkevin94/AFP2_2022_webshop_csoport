@@ -4,8 +4,12 @@ import com.cafebabes.cafebabeswebshop.category.Category;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository
@@ -45,5 +49,23 @@ public class ProductDao {
         return jdbcTemplate.query(SQL_SELECT_ALL_JOIN_CATEGORY +
                         "WHERE product_status = 'ACTIVE' ORDER BY category.ordinal, products.name, manufacture",
                 PRODUCT_ROW_MAPPER);
+    }
+
+    public long saveProductAndGetId(Product product) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO products (code, address, name,  manufacture, price, product_status, category_id) " +
+                            "VALUES (?,?,?,?,?,?,(SELECT id FROM category WHERE name=?))",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, product.getCode());
+            ps.setString(2, product.getAddress());
+            ps.setString(3, product.getName());
+            ps.setString(4, product.getManufacture());
+            ps.setDouble(5, product.getPrice());
+            ps.setString(6, "ACTIVE");
+            ps.setString(7, product.getCategory().getName());
+            return ps;
+        }, keyHolder);
+        return keyHolder.getKey().longValue();
     }
 }
