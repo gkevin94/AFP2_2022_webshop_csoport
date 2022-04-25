@@ -31,6 +31,13 @@ public class ProductDao {
                     resultSet.getLong("category.ordinal"))
     ));
 
+    private static final RowMapper<Product> PRODUCT_ROW_MAPPER2 = (resultSet, i) -> new Product(
+            resultSet.getString("address"),
+            resultSet.getString("name"),
+            resultSet.getString("manufacture"),
+            resultSet.getInt("price"),
+            resultSet.getString("product_status"));
+
     private static final String SQL_SELECT_ALL_JOIN_CATEGORY =
             "SELECT products.id, code, address, products.name, manufacture, price, product_status, category_id, category.name, category.ordinal " +
                     "FROM products LEFT JOIN category ON category_id=category.id ";
@@ -107,5 +114,12 @@ public class ProductDao {
     public Product getProductById(long id) {
         return jdbcTemplate.queryForObject("SELECT products.id, code, address, products.name, manufacture, price, product_status, category_id, category.name, category.ordinal " +
                 "FROM products  LEFT JOIN category ON category_id=category.id WHERE products.id = ? ", PRODUCT_ROW_MAPPER, id);
+    }
+
+    public List<Product> listAdviceProducts() {
+        return jdbcTemplate.query("SELECT products.name, products.manufacture, products.price, products.address, products.product_status " +
+                "FROM products JOIN ordered_products ON products.id = ordered_products.product_id " +
+                "JOIN orders ON ordered_products.order_id = orders.id " +
+                "WHERE (orders.order_status = 'ACTIVE' or orders.order_status = 'SHIPPED') AND products.product_status = 'ACTIVE' ORDER BY orders.purchase_date DESC LIMIT 3", PRODUCT_ROW_MAPPER2);
     }
 }
