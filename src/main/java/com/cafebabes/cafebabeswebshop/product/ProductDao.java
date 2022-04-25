@@ -99,4 +99,8 @@ public class ProductDao {
                 start
         );
     }
+
+    public void deleteProduct(long id) {
+        jdbcTemplate.update("UPDATE products SET product_status = 'DELETED' WHERE id = ?", id);
+    }
 }
