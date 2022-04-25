@@ -1,9 +1,12 @@
 package com.cafebabes.cafebabeswebshop.product;
 
+import com.cafebabes.cafebabeswebshop.category.Category;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ProductDao {
@@ -36,5 +39,11 @@ public class ProductDao {
         } catch (EmptyResultDataAccessException e) {
             throw new IllegalStateException();
         }
+    }
+
+    public List<Product> getProducts() {
+        return jdbcTemplate.query(SQL_SELECT_ALL_JOIN_CATEGORY +
+                        "WHERE product_status = 'ACTIVE' ORDER BY category.ordinal, products.name, manufacture",
+                PRODUCT_ROW_MAPPER);
     }
 }
