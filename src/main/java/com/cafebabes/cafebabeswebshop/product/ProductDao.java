@@ -103,4 +103,9 @@ public class ProductDao {
     public void deleteProduct(long id) {
         jdbcTemplate.update("UPDATE products SET product_status = 'DELETED' WHERE id = ?", id);
     }
+
+    public Product getProductById(long id) {
+        return jdbcTemplate.queryForObject("SELECT products.id, code, address, products.name, manufacture, price, product_status, category_id, category.name, category.ordinal " +
+                "FROM products  LEFT JOIN category ON category_id=category.id WHERE products.id = ? ", PRODUCT_ROW_MAPPER, id);
+    }
 }
