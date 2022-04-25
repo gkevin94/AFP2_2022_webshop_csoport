@@ -32,4 +32,8 @@ public class ProductService {
     public void updateProducts(long id, Product product) {
         productDao.updateProduct(id, product);
     }
+
+    public List<Product> getProductsWithStartAndSize(int start, int size) {
+        return productDao.getProductsWithStartAndSize(start, size);
+    }
 }
