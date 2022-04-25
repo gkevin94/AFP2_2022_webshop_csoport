@@ -41,4 +41,19 @@ public class ProductController {
             return new ResultStatus(ResultStatusEnum.NOT_OK, "Minden adat kitöltendő, maximális ár: 2.000.000 Ft");
         }
     }
+
+    @PostMapping("/products/{id}")
+    public ResultStatus updateProducts(@PathVariable long id, @RequestBody Product product) {
+        validator = new ProductValidator();
+        if (validator.isValidProduct(product)) {
+            try {
+                productService.updateProducts(id, product);
+                return new ResultStatus(ResultStatusEnum.OK, "Termék sikeresen módosítva!");
+            } catch (DataAccessException sql) {
+                return new ResultStatus(ResultStatusEnum.NOT_OK, "Termék cím vagy kód már szerepel másik terméknél");
+            }
+        } else {
+            return new ResultStatus(ResultStatusEnum.NOT_OK, "Minden adat kitöltendő, maximális ár: 2.000.000 Ft");
+        }
+    }
 }
