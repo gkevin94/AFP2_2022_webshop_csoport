@@ -40,4 +40,8 @@ public class ProductService {
     public List<Product> getProductsWithStartAndSizeAndCategory(int start, int size, Category category) {
         return productDao.getProductsWithStartAndSizeAndCategory(start, size, category);
     }
+
+    public void deleteProduct(long id) {
+        productDao.deleteProduct(id);
+    }
 }
