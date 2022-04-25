@@ -6,6 +6,11 @@ public class ResultStatus<T> {
     private ResultStatusEnum status;
     private String message;
 
+    public ResultStatus(ResultStatusEnum status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
     public T get() {
         return type;
     }
