@@ -195,3 +195,26 @@ function deleteNewRow(){
     var table = document.querySelector("#admincategories-table");
     table.removeChild(table.lastChild);
 }
+function deleteCategory(num){
+
+    var id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
+
+    if (!confirm("Biztos, hogy törli a kategóriát?")) {
+        return;
+    }
+
+    fetch("/categories/" + id, {
+            method: "DELETE",
+    })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (jsonData) {
+        if(jsonData.status == "OK")
+            document.getElementById("message-div").setAttribute("class", "alert alert-success");
+        else
+            document.getElementById("message-div").setAttribute("class", "alert alert-danger");
+        document.querySelector("#message-div").innerHTML = jsonData.message;
+        fetchCategories();
+    });
+}
