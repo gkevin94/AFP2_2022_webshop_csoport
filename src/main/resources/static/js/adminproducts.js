@@ -446,3 +446,55 @@ console.log(myselect2);
             `<option value="${jsonData[i].name}">${jsonData[i].name}</option>`
         }
 }
+
+function addNewProduct(num){
+
+    var code = document.getElementById(`codeInputNew${num}`).value;
+    var name = document.getElementById(`nameInputNew${num}`).value;
+    var address = document.getElementById(`addressInputNew${num}`).value + num;
+    var manu = document.getElementById(`manInputNew${num}`).value;
+    var price = document.getElementById(`priceInputNew${num}`).value;
+    var category = document.getElementById(`categoryInputNew${num}`).value;
+    
+    var request = {
+        //"id": id,
+        "code": code,
+        "name": name,
+        "address": address,
+        "manufacture": manu,
+        "price": price,
+        "product_status": "ACTIVE",
+        "category" : {
+            "name" : category
+        }
+    }
+
+    fetch("/products", {
+            method: "POST",
+            body: JSON.stringify(request),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(function (response) {
+            return response.json();
+        }).
+    then(function (jsonData) {
+        if (jsonData.status == "OK") {
+            console.log(jsonData.message);
+            document.getElementById(`codeTd${num}`).innerHTML = code;
+            document.getElementById(`nameTd${num}`).innerHTML = name;
+            document.getElementById(`addressTd${num}`).innerHTML = address;
+            document.getElementById(`manTd${num}`).innerHTML = manu;
+            document.getElementById(`priceTd${num}`).innerHTML = price;
+            document.getElementById(`categoryTd${num}`).innerHTML = category;
+            fetchProducts();
+            document.getElementById("message-div").setAttribute("class", "alert alert-success");
+            document.getElementById("message-div").innerHTML = "Új termék hozzáadva";
+        } else {
+            document.getElementById("message-div").setAttribute("class", "alert alert-danger");
+            document.getElementById("message-div").innerHTML = "A beszúrás sikertelen";
+        }
+    });
+    return false; 
+}
