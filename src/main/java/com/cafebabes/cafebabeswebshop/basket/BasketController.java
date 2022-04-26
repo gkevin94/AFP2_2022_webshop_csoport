@@ -7,4 +7,7 @@ public class BasketController {
 
     private BasketService basketService;
 
+    public BasketController(BasketService basketService) {
+        this.basketService = basketService;
+    }
 }
