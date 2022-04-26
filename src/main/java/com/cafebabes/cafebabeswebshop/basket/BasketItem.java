@@ -10,6 +10,14 @@ public class BasketItem {
     private int pieces;
     private String username;
 
+    public BasketItem(long productId, long basketId, String name, String address, int price, int pieces) {
+        this.productId = productId;
+        this.basketId = basketId;
+        this.name = name;
+        this.address = address;
+        this.price = price;
+        this.pieces = pieces;
+    }
 
     public long getBasketId() {
         return basketId;
