@@ -373,3 +373,76 @@ function saveTds(num){
     });
     return false;
 }
+function showNewRow(length){
+    var num = length + 1;
+    var table = document.querySelector("#adminproducts-table");
+    var tr = document.createElement('tr');
+
+    var idTd = document.createElement('td');
+    idTd.setAttribute('id', `idTd${num}`);
+    var codeTd = document.createElement('td');
+    codeTd.setAttribute('id', `codeTd${num}`);
+    var nameTd = document.createElement('td');
+    nameTd.setAttribute('id', `nameTd${num}`);
+    var addressTd = document.createElement('td');
+    addressTd.setAttribute('id', `addressTd${num}`);
+    var manTd = document.createElement('td');
+    manTd.setAttribute('id', `manTd${num}`);
+    var priceTd = document.createElement('td');
+    priceTd.setAttribute('id', `priceTd${num}`);
+    var statusTd = document.createElement('td');
+    var categoryTd = document.createElement('td');
+    categoryTd.setAttribute('id', `categoryTd${num}`);
+    var saveButtonTd = document.createElement('td');
+    var saveButton = document.createElement('button');
+    saveButton.setAttribute('class', 'btn');
+    saveButton.setAttribute('onclick', `addNewProduct(${num})`);
+    var editImageButtonTd = document.createElement('td');
+    //var editImageButton = document.createElement('button');
+    //editImageButton.setAttribute('class', 'btn');
+    //editImageButton.setAttribute('onclick', `editImageTds(${jsonData[i].id})`);
+    var deleteButtonTd = document.createElement('td');
+    var deleteButton = document.createElement('button');
+    deleteButton.setAttribute('onclick', 'deleteNewRow()');
+    deleteButton.setAttribute('class', 'btn');
+    saveButtonTd.appendChild(saveButton);
+    //editImageButtonTd.appendChild(editImageButton);
+    deleteButtonTd.appendChild(deleteButton);
+
+    codeTd.innerHTML = `<input id="codeInputNew${num}" type='text' minLength='1' maxLength='255' class='input-box' required>`
+    nameTd.innerHTML = `<input id="nameInputNew${num}" onkeyup='generateAddress(${num})' type='text' minLength='1' maxLength='255' class='input-box' required>`
+    addressTd.innerHTML = `<input id="addressInputNew${num}" type='text' minLength='1' maxLength='255' class='input-box' required>`
+    manTd.innerHTML = `<input id="manInputNew${num}" type='text' minLength='1' maxLength='255' class='input-box' required>`
+    priceTd.innerHTML = `<input id="priceInputNew${num}" type='number' class='input-box' min='0' max='2000000' step= '1' required>`
+    statusTd.innerHTML = 'ACTIVE';
+    categoryTd.innerHTML = `<select id="categoryInputNew${num}" class='form-control' required>`
+    console.log(num);
+
+    saveButton.innerHTML = `<i class="fa fa-save"></i>Mentés`;
+    deleteButton.innerHTML = `<i class="fas fa-trash-alt"></i>Törlés`;
+
+    tr.appendChild(idTd); tr.appendChild(codeTd); tr.appendChild(nameTd); 
+    tr.appendChild(addressTd); tr.appendChild(manTd); tr.appendChild(priceTd); 
+    tr.appendChild(statusTd); tr.appendChild(categoryTd); tr.appendChild(saveButtonTd); 
+    tr.appendChild(editImageButtonTd); tr.appendChild(deleteButtonTd);
+    table.appendChild(tr);
+    for(var i = 0; i < global.length; i++){
+        document.querySelector(`#categoryInputNew${num}`).innerHTML +=
+        `<option value="${global[i].name}">${global[i].name}</option>`
+    }
+
+}
+
+
+function showNewCategories(num){
+console.log(num);
+var jsonData = global;
+console.log(document.querySelector('#categoryInputNew15'));
+var myselect2 = document.querySelector('#categoryInputNew' + num);
+console.log(myselect2);
+        myselect2.innerHTML = "";
+        for (var i = 0; i < jsonData.length; i++) {
+            myselect2.innerHTML +=
+            `<option value="${jsonData[i].name}">${jsonData[i].name}</option>`
+        }
+}
