@@ -123,3 +123,75 @@ function saveTds(num){
     });
     return false;
 }
+function showNewRow(length){
+    var num = length + 1;
+    var table = document.querySelector("#admincategories-table");
+    var tr = document.createElement('tr');
+
+    var ordinalTd = document.createElement('td');
+    ordinalTd.setAttribute('id', `ordinalTd${num}`);
+    var nameTd = document.createElement('td');
+    nameTd.setAttribute('id', `nameTd${num}`);
+
+    var saveButtonTd = document.createElement('td');
+    var saveButton = document.createElement('button');
+    saveButton.setAttribute('class', 'btn');
+    saveButton.setAttribute('onclick', `addNewCategory(${num})`);
+    var deleteButtonTd = document.createElement('td');
+    var deleteButton = document.createElement('button');
+    deleteButton.setAttribute('onclick', 'deleteNewRow()');
+    deleteButton.setAttribute('class', 'btn');
+    saveButtonTd.appendChild(saveButton);
+    deleteButtonTd.appendChild(deleteButton);
+
+    nameTd.innerHTML = `<input id="nameInputNew${num}" type='text' minLength='1' maxLength='255' class='input-box' required>`
+    ordinalTd.innerHTML = `<input id="ordinalInputNew${num}" type='text' minLength='1' maxLength='255' class='input-box' required>`
+
+    saveButton.innerHTML = `<i class="fa fa-save"></i>Mentés`;
+    deleteButton.innerHTML = `<i class="fas fa-trash-alt"></i>Törlés`;
+
+    tr.appendChild(ordinalTd);
+    tr.appendChild(nameTd);
+    tr.appendChild(saveButtonTd); tr.appendChild(deleteButtonTd);
+    table.appendChild(tr);
+
+}
+
+function addNewCategory(num){
+
+    var name = document.getElementById(`nameInputNew${num}`).value;
+    var ordinal = document.getElementById(`ordinalInputNew${num}`).value;
+
+    var request = {
+        "name": name,
+        "ordinal": ordinal
+    }
+
+    fetch("/categories", {
+            method: "POST",
+            body: JSON.stringify(request),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            if (jsonData.status == "OK") {
+                document.getElementById(`nameTd${num}`).innerHTML = name;
+                document.getElementById(`ordinalTd${num}`).innerHTML = ordinal;
+                fetchCategories();
+                document.getElementById("message-div").setAttribute("class", "alert alert-success");
+            } else {
+                document.getElementById("message-div").setAttribute("class", "alert alert-danger");
+            }
+            document.getElementById("message-div").innerHTML = jsonData.message;
+        });
+    return false;
+}
+
+function deleteNewRow(){
+    var table = document.querySelector("#admincategories-table");
+    table.removeChild(table.lastChild);
+}
