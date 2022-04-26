@@ -1,6 +1,21 @@
 window.onload = function() {
 	fetchDashboard();
-
+	}
+	
+	
+	var myJsonData;
+	
+	function fetchDashboard(){
+		fetch("/dashboard")
+		.then(function(response){
+			return response.json();
+		})
+		.then(function(jsonData){
+			showDashboard(jsonData);
+			myJsonData = jsonData;
+		});
+	}
+	
 	function showDashboard(jsonData){
 		var tbody = document.querySelector("#tbody");
 		tbody.innerHTML = "";
