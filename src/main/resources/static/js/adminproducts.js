@@ -498,3 +498,36 @@ function addNewProduct(num){
     });
     return false; 
 }
+
+function deleteNewRow(){
+    var table = document.querySelector("#adminproducts-table");
+    table.removeChild(table.lastChild);
+}
+
+function deleteProduct(num){
+
+    var id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
+
+    if (!confirm("Biztos, hogy törli a terméket?")) {
+        return;
+    }
+
+    fetch("/products/" + id, {
+            method: "DELETE",
+        })
+        .then(function (response) {
+            document.getElementById("message-div").setAttribute("class", "alert alert-success");
+            document.querySelector("#message-div").innerHTML = "Törölve"
+            fetchProducts();
+            });
+        }
+     
+function generateAddress(num){
+var nameInput = document.getElementById(`nameInputNew${num}`).value;
+
+var addressInput = document.getElementById(`addressInputNew${num}`);
+
+addressInput.value = nameInput.trim().toLowerCase().replace(new RegExp(' ', 'g'), '-')
+.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
+}
