@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Kategória adminisztráció</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:black;">
+    <a class="navbar-brand" href="/"><img src="../images/logoelso.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+
+            <!--js tölti fel-->
+
+            <li class="nav-item active" id="basket">
+                <a class="nav-link" href="basket.html">
+                    <i class="fa" style="font-size:24px">&#xf07a;</i>
+                    <span class='badge badge-warning' id='cartCount'></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main style="margin-top:3.5em;margin-bottom:3.5em;min-height:calc(100vh - 168px)">
+    <div class="container" id="container" style="margin-top:3.5em">
+        <br>
+        <!--<input type="checkbox" name="checkStatus" id="checkStatus"> Törölt termékek megjelenítése<br><br>-->
+        <div id="message-div"></div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Sorszám</th>
+                <th>Név</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody id="admincategories-table"></tbody>
+        </table>
+        <button class="btn" id="createButton"><i class="fas fa-plus"></i>Új kategória</button>
+    </div>
+</main>
+
+<footer class="page-footer font-small text-light" style="background-color: black;">
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="#"> CafeBabes csapat</a>
+    </div>
+</footer>
+
+<script src="js/navbarLoader.js"></script>
+<script src="js/categories.js"></script>
+</body>
+</html>
