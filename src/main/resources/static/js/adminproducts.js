@@ -316,4 +316,60 @@ function showCategories(num, category){
         `<option value="${jsonData[i].name}">${jsonData[i].name}</option>`
     }
 }
+function saveTds(num){
 
+    var id = document.getElementById(`savebutton${num}`).parentElement.parentElement['raw-data'].id;
+
+    var code = document.getElementById(`codeInput${num}`).value;
+    var name = document.getElementById(`nameInput${num}`).value;
+    var address = document.getElementById(`addressInput${num}`).value;
+    var manu = document.getElementById(`manInput${num}`).value;
+    var price = document.getElementById(`priceInput${num}`).value;
+    var category = document.getElementById(`selectInput${num}`).value;
+    console.log(category);
+    console.log(global);
+    console.log(num);
+
+    var request = {
+        "id": id,
+        "code": code,
+        "name": name,
+        "address": address,
+        "manufacture": manu,
+        "price": price,
+        "category" : {
+            "name" : category
+        }
+    }
+
+    fetch("/products/" + id, {
+            method: "POST",
+            body: JSON.stringify(request),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(function (response) {
+            return response.json();
+        }).
+    then(function (jsonData) {
+        if (jsonData.status == 'OK') {
+
+           document.getElementById(`codeTd${num}`).innerHTML = code;
+           document.getElementById(`nameTd${num}`).innerHTML = name;
+           document.getElementById(`addressTd${num}`).innerHTML = address;
+           document.getElementById(`manTd${num}`).innerHTML = manu;
+           document.getElementById(`priceTd${num}`).innerHTML = price;
+           document.getElementById(`categoryTd${num}`).innerHTML = category;
+        
+            fetchProducts();
+            fetchCategories();
+           document.getElementById("message-div").setAttribute("class", "alert alert-success");
+           document.getElementById("message-div").innerHTML = "Frissítve";
+        } else {
+            document.getElementById("message-div").setAttribute("class", "alert alert-danger");
+            document.getElementById("message-div").innerHTML = "Frissítés nem sikerült";
+        }
+    });
+    return false;
+}
