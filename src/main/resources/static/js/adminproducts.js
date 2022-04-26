@@ -271,3 +271,49 @@ function fetchCategories(){
     createButton.setAttribute('onclick', `showNewRow(${jsonData.length})`);
 
 }
+function editTds(num){
+    var code = document.getElementById(`codeTd${num}`);
+    var name = document.getElementById(`nameTd${num}`);
+    var address = document.getElementById(`addressTd${num}`);
+    var manu = document.getElementById(`manTd${num}`);
+    var price = document.getElementById(`priceTd${num}`);
+    var category = document.getElementById(`categoryTd${num}`);
+    selectedCategory = category.innerHTML;
+
+    var codeData = code.innerHTML;
+    var nameData = name.innerHTML;
+    var addressData = address.innerHTML;
+    var manuData = manu.innerHTML;
+    var priceData = price.innerHTML;
+    var categoryData = category.innerHTML;
+
+    code.innerHTML = `<input id="codeInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value = '${codeData}' required>`
+    name.innerHTML = `<input id="nameInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value='${nameData}' required>`
+    address.innerHTML = `<input id="addressInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value='${addressData}' required>`
+    manu.innerHTML = `<input id="manInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value='${manuData}' required>`
+    price.innerHTML = `<input id="priceInput${num}" type='number' class='input-box' min='0' max='2000000' step= '1' value='${priceData}' required>`
+    category.innerHTML = `<select id="selectInput${num}" class='form-control' value='${categoryData}'  required>`
+
+    var edit = document.getElementById(`editbutton${num}`);
+    edit.style.display = 'none';
+    var save = document.getElementById(`savebutton${num}`);
+    save.style.display = 'inline';
+    showCategories(num, selectedCategory);
+}
+
+
+ function editImageTds(productId){
+   location.replace("/upload.html?productId=" + productId );
+    }
+
+
+function showCategories(num, category){
+    var jsonData = global;
+    var myselect2 = document.querySelector('#selectInput' + num);
+    myselect2.innerHTML = "";
+    for (var i = 0; i < jsonData.length; i++) {
+        myselect2.innerHTML +=
+        `<option value="${jsonData[i].name}">${jsonData[i].name}</option>`
+    }
+}
+
