@@ -63,3 +63,63 @@ for (var i = 0; i < jsonData.length; i++) {
 
     table.appendChild(tr);
 }
+var createButton = document.getElementById('createButton');
+createButton.setAttribute('onclick', `showNewRow(${jsonData.length})`);
+
+}
+
+function editTds(num){
+
+    var name = document.getElementById(`nameTd${num}`);
+    var ordinal = document.getElementById(`ordinalTd${num}`);
+
+    var nameData = name.innerHTML;
+    var ordinalData = ordinal.innerHTML;
+
+    name.innerHTML = `<input id="nameInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value = '${nameData}' required>`
+    ordinal.innerHTML = `<input id="ordinalInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value='${ordinalData}' required>`
+
+    var edit = document.getElementById(`editbutton${num}`);
+    edit.style.display = 'none';
+    var save = document.getElementById(`savebutton${num}`);
+    save.style.display = 'inline';
+}
+
+function saveTds(num){
+
+    var id = document.getElementById(`savebutton${num}`).parentElement.parentElement['raw-data'].id;
+
+    var name = document.getElementById(`nameInput${num}`).value;
+    var ordinal = document.getElementById(`ordinalInput${num}`).value;
+
+    var request = {
+        "id": id,
+        "name": name,
+        "ordinal": ordinal
+    }
+
+    fetch("/categories/" + id, {
+            method: "POST",
+            body: JSON.stringify(request),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(function (response) {
+            return response.json();
+        }).
+    then(function (jsonData) {
+        if (jsonData.status == 'OK') {
+
+           document.getElementById(`nameTd${num}`).innerHTML = name;
+           document.getElementById(`ordinalTd${num}`).innerHTML = ordinal;
+
+           fetchCategories();
+           document.getElementById("message-div").setAttribute("class", "alert alert-success");
+        } else {
+            document.getElementById("message-div").setAttribute("class", "alert alert-danger");
+        }
+        document.getElementById("message-div").innerHTML = jsonData.message;
+    });
+    return false;
+}
