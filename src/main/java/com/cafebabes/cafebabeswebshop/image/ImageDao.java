@@ -43,4 +43,8 @@ public class ImageDao {
         return jdbcTemplate.queryForObject("SELECT id, image_file, file_type, file_name, product_id FROM images WHERE product_id = ? LIMIT 1 OFFSET ?",
                 IMAGE_ROW_MAPPER, productId, offset);
     }
+
+    public int deleteImage(long productId, long offset) {
+        return jdbcTemplate.update("DELETE FROM images WHERE id = (SELECT id FROM (SELECT id FROM images WHERE product_id = ? LIMIT 1 OFFSET ?) x)", productId, offset);
+    }
 }
