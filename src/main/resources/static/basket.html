@@ -37,6 +37,50 @@
     <span class="nav-link text-light">Kategóriák</span>
 </nav>
 
+<main style="margin-top:3.5em;min-height:calc(100vh - 348px);">
+    <div class="container">
+        <br>
+        <div class="row content" id="list-product">
 
+        </div>
+        <div class="col-sm-7 float-right">
+            <h2 id="total">Teljes összeg: <span id="total-price"></span> Ft</h2>
+            <a ><button type="button" class="btn btn-outline-secondary" id="order" onclick="checkIfEmpty()">Megrendelem</button></a>
+            <button type="button" class="btn btn-outline-secondary" id="delete-all" onclick="emptyBasket()">Kosár ürítése</button>
+
+        </div>
+    </div>
+    <br><br>
+</main>
+
+<div class="jumbotron text-center" style="margin-bottom:0;margin-top:5em;">
+    <a class="fb-ic">
+        <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+    </a>
+    <a class="tw-ic">
+        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+    </a>
+    <a class="gplus-ic">
+        <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+    </a>
+    <a class="li-ic">
+        <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+    </a>
+    <a class="ins-ic">
+        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+    </a>
+    <a class="pin-ic">
+        <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+    </a>
+</div>
+
+<footer class="page-footer font-small text-light" style="background-color: black;">
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="#"> CafeBabes csapat</a>
+    </div>
+</footer>
+
+<script src="js/navbarLoader.js"></script>
+<script src="js/basket.js"></script>
 </body>
 </html>
