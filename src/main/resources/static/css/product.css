@@ -57,3 +57,13 @@
     margin-top: 3px;
     text-decoration: underline;
 }
+
+.rel {
+    position: relative;
+}
+
+.star{
+    color: goldenrod;
+    font-size: 1.5rem;
+    padding: 0 0.4rem; /* space out the stars */
+}
