@@ -4,6 +4,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BasketService {
 
@@ -26,5 +28,8 @@ public class BasketService {
         }
     }
 
+    public List<BasketItem> getBasketItems(Authentication authentication) {
+        return basketDao.getBasketItems(authentication.getName());
+    }
 
 }
