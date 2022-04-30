@@ -92,11 +92,11 @@
     content: '\2605';  /* filled star */
 }
 
-/*@font-face {
+@font-face {
     font-family: 'surf';
     src: url(../font/tropical_asian.ttf);
 }
-*/
+
 .picture {
     max-width:450px;
 }
