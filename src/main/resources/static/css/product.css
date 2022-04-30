@@ -72,3 +72,13 @@
     content: '\2606';    /* star outline */
     cursor: pointer;
 }
+
+.stars{
+    counter-reset: rateme 0;
+    font-size: 2.0rem;
+    font-weight: 900;
+}
+
+.star.rated{
+    counter-increment: rateme 1;
+}
