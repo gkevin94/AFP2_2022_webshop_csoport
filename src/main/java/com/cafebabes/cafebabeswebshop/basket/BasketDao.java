@@ -71,4 +71,8 @@ public class BasketDao {
     public void deleteBasket(String userName) {
         jdbcTemplate.update("DELETE FROM basket WHERE user_id =(SELECT id FROM users WHERE users.user_name = ?)", userName);
     }
+
+    public void deleteOneItem(String userName, String address) {
+        jdbcTemplate.update("DELETE FROM basket WHERE user_id=(SELECT id FROM users WHERE users.user_name = ?) and product_id=(SELECT id FROM products WHERE products.address=?)", userName, address);
+    }
 }
