@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,14 @@ import java.io.IOException;
 
 @Repository
 public class ImageDao {
+
+    private static final RowMapper<Image> IMAGE_ROW_MAPPER = ((rs, i) -> new Image(
+            rs.getLong("id"),
+            rs.getBytes("image_file"),
+            MediaType.parseMediaType(rs.getString("file_type")),
+            rs.getString("file_name"),
+            rs.getLong("product_id")
+    ));
 
     private JdbcTemplate jdbcTemplate;
 
@@ -29,4 +38,5 @@ public class ImageDao {
             throw new IllegalArgumentException("Cannot save image", daex);
         }
     }
+
 }
