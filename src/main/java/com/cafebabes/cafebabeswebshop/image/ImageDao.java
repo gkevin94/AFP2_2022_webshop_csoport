@@ -39,4 +39,8 @@ public class ImageDao {
         }
     }
 
+    public Image getImage(long productId, long offset) {
+        return jdbcTemplate.queryForObject("SELECT id, image_file, file_type, file_name, product_id FROM images WHERE product_id = ? LIMIT 1 OFFSET ?",
+                IMAGE_ROW_MAPPER, productId, offset);
+    }
 }
