@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 
 @Repository
 public class BasketDao {
@@ -55,5 +56,15 @@ public class BasketDao {
             return ps;
         }, keyHolder);
         return keyHolder.getKey().longValue();
+    }
+
+    public List<BasketItem> getBasketItems(String userName) {
+        return jdbcTemplate.query(
+                "SELECT product_id, basket.id, products.name, products.address, products.price, pieces FROM basket \n" +
+                        "JOIN products ON basket.product_id=products.id \n" +
+                        "JOIN users ON basket.user_id=users.id \n" +
+                        "WHERE user_name = ?",
+                BASKETITEM_ROW_MAPPER,
+                userName);
     }
 }
