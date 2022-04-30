@@ -10,4 +10,8 @@ public class ImageService {
     public ImageService(ImageDao imageDao) {
         this.imageDao = imageDao;
     }
+
+    public void saveImage(Image image) {
+        imageDao.saveImage(image);
+    }
 }
