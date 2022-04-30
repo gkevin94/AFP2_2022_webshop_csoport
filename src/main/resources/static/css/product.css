@@ -67,3 +67,8 @@
     font-size: 1.5rem;
     padding: 0 0.4rem; /* space out the stars */
 }
+
+.star::before{
+    content: '\2606';    /* star outline */
+    cursor: pointer;
+}
