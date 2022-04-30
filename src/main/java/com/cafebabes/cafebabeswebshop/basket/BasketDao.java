@@ -22,5 +22,13 @@ public class BasketDao {
             resultSet.getInt("pieces")
     ));
 
-
+    public BasketItem getBasketItem(BasketItem basketItem) {
+        return jdbcTemplate.queryForObject(
+                "SELECT product_id, basket.id, products.name, products.address, products.price, pieces FROM basket \n" +
+                        "JOIN products ON basket.product_id=products.id \n" +
+                        "JOIN users ON basket.user_id=users.id \n" +
+                        "WHERE users.user_name = ? and products.address = ?",
+                BASKETITEM_ROW_MAPPER,
+                basketItem.getUsername(), basketItem.getAddress());
+    }
 }
