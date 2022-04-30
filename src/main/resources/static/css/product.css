@@ -35,3 +35,11 @@
 .block {
     display: block;
 }
+
+.zmin {
+    z-index: 1;
+}
+.ab {
+    position: absolute;
+}
+
