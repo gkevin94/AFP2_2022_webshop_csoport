@@ -67,4 +67,8 @@ public class BasketDao {
                 BASKETITEM_ROW_MAPPER,
                 userName);
     }
+
+    public void deleteBasket(String userName) {
+        jdbcTemplate.update("DELETE FROM basket WHERE user_id =(SELECT id FROM users WHERE users.user_name = ?)", userName);
+    }
 }
