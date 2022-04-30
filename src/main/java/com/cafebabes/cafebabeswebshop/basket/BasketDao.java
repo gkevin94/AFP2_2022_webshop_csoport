@@ -2,7 +2,12 @@ package com.cafebabes.cafebabeswebshop.basket;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 @Repository
 public class BasketDao {
@@ -35,5 +40,20 @@ public class BasketDao {
     public void updateBasketItemPieces(BasketItem basketItem) {
         jdbcTemplate.update("UPDATE basket SET pieces = ? WHERE product_id = (SELECT id FROM products WHERE address = ?) AND user_id = (SELECT id FROM users WHERE user_name = ?)",
                 basketItem.getPieces(), basketItem.getAddress(), basketItem.getUsername());
+    }
+
+    public long saveBasketItemAndGetId(BasketItem basketItem) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                    "INSERT INTO basket(user_id, product_id, pieces) VALUES ((SELECT id FROM users WHERE user_name = ?), (SELECT id FROM products WHERE address = ?), ?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, basketItem.getUsername());
+            ps.setString(2, basketItem.getAddress());
+            ps.setInt(3, basketItem.getPieces());
+            return ps;
+        }, keyHolder);
+        return keyHolder.getKey().longValue();
     }
 }
