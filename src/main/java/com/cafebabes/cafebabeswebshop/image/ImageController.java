@@ -3,9 +3,7 @@ package com.cafebabes.cafebabeswebshop.image;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -40,6 +38,19 @@ public class ImageController {
             return ResponseEntity.ok("File is successfully uploaded.");
         } catch (IOException ioex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @GetMapping("/image/{id}/{offset}")
+    public ResponseEntity<byte[]> getImage(@PathVariable("id") long productId, @PathVariable("offset") long offset) {
+        try {
+            Image image = imageService.getImage(productId, offset);
+            return ResponseEntity.ok()
+                    .header("Content-Disposition", "attachment; filename=" + image.getFileName())
+                    .contentType(image.getMediaType())
+                    .body(image.getFileBytes());
+        } catch (NullPointerException e) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
     }
 }
