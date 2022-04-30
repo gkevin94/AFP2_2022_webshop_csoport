@@ -31,4 +31,9 @@ public class BasketDao {
                 BASKETITEM_ROW_MAPPER,
                 basketItem.getUsername(), basketItem.getAddress());
     }
+
+    public void updateBasketItemPieces(BasketItem basketItem) {
+        jdbcTemplate.update("UPDATE basket SET pieces = ? WHERE product_id = (SELECT id FROM products WHERE address = ?) AND user_id = (SELECT id FROM users WHERE user_name = ?)",
+                basketItem.getPieces(), basketItem.getAddress(), basketItem.getUsername());
+    }
 }
