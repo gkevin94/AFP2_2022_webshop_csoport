@@ -39,4 +39,9 @@ public class BasketService {
     public void deleteOneItem(Authentication authentication, String address) {
         basketDao.deleteOneItem(authentication.getName(), address);
     }
+
+    public void updateBasketItemPieces(Authentication authentication, BasketItem basketItem) {
+        basketItem.setUsername(authentication.getName());
+        basketDao.updateBasketItemPieces(basketItem);
+    }
 }
