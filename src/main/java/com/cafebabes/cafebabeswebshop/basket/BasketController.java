@@ -35,4 +35,10 @@ public class BasketController {
         if (authentication != null)
             basketService.deleteOneItem(authentication, address);
     }
+
+    @PostMapping("/basket")
+    public void updateBasketItemPieces(@RequestBody BasketItem basketItem, Authentication authentication) {
+        if (authentication != null)
+            basketService.updateBasketItemPieces(authentication, basketItem);
+    }
 }
