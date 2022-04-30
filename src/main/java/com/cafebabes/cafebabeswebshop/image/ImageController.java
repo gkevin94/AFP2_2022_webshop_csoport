@@ -53,4 +53,10 @@ public class ImageController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
     }
+
+    @DeleteMapping("/image/{id}/{offset}")
+    public ResponseEntity<String> deleteImage(@PathVariable("id") long productId, @PathVariable("offset") long offset) {
+        int rowCount = imageService.deleteImage(productId, offset);
+        return rowCount >= 1 ? ResponseEntity.ok("Kép sikeresen törölve!") : ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
