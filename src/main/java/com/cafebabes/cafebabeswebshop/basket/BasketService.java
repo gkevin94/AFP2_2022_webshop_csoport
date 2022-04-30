@@ -32,4 +32,7 @@ public class BasketService {
         return basketDao.getBasketItems(authentication.getName());
     }
 
+    public void deleteBasket(Authentication authentication) {
+        basketDao.deleteBasket(authentication.getName());
+    }
 }
