@@ -23,4 +23,8 @@ public class ImageService {
             return null;
         }
     }
+
+    public int deleteImage(long productId, long offset) {
+        return imageDao.deleteImage(productId, offset);
+    }
 }
