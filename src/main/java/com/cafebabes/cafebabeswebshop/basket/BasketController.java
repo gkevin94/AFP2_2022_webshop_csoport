@@ -23,4 +23,10 @@ public class BasketController {
     public List<BasketItem> getBasketItems(Authentication authentication) {
         return authentication == null ? null : basketService.getBasketItems(authentication);
     }
+
+    @DeleteMapping("/basket")
+    public void deleteBasket(Authentication authentication) {
+        if (authentication != null)
+            basketService.deleteBasket(authentication);
+    }
 }
