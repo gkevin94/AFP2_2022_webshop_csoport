@@ -188,3 +188,9 @@ function showFeedbacks(jsonData) {
                 `;
     }
 }
+
+function repeat(starsNumber){
+
+    for(var i = 0 ;i < starsNumber; i++) ;
+}
+
