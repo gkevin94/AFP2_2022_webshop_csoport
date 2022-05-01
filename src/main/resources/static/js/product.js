@@ -194,3 +194,29 @@ function repeat(starsNumber){
     for(var i = 0 ;i < starsNumber; i++) ;
 }
 
+function addToBasket() {
+    var quantity = document.querySelector('#inputQuantity').value;
+    var address = (new URL(document.location)).searchParams.get('address');
+    var url = '/basket/' + address;
+
+    var request = {
+        'pieces': quantity
+    };
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(request),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            if (jsonData != -1) {
+                addGoToBasketButton();
+                basketRefresh();
+            }
+        });
+}
