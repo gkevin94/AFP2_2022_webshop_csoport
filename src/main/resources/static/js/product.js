@@ -63,4 +63,15 @@ function fetchProduct() {
     return false;
 }
 
+function fetchFeedbacks(productId) {
+    var url = '/feedback/' + productId;
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            feedbacks = jsonData;
+            showFeedbacks(jsonData);
+        });
+}
 
