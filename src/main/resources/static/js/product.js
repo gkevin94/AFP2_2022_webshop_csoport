@@ -220,3 +220,9 @@ function addToBasket() {
             }
         });
 }
+
+function addGoToBasketButton() {
+    document.querySelector('#basketButton').innerHTML =
+        '<button type="button" class="btn btn-outline-primary">Irány a kosár</button>';
+}
+
