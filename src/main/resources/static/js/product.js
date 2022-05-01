@@ -88,3 +88,7 @@ function fetchImage(productId) {
             callBackFunction(productId);
         });
 }
+
+function callBackFunction(productId) {
+    setTimeout(function(){ fetchAnotherImage(productId, 1); }, 1000);
+}
