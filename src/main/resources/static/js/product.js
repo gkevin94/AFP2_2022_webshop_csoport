@@ -226,3 +226,16 @@ function addGoToBasketButton() {
         '<button type="button" class="btn btn-outline-primary">Irány a kosár</button>';
 }
 
+
+function showProduct(jsonData) {
+    var code = document.getElementById('code');
+    var name = document.getElementById('name');
+    name.className = "surf large";
+    var manufacture = document.getElementById('manufacturer');
+    var price = document.getElementById('price');
+
+    code.innerHTML = jsonData.code;
+    name.innerHTML = jsonData.name;
+    manufacture.innerHTML = jsonData.manufacture;
+    price.innerHTML = jsonData.price;
+}
