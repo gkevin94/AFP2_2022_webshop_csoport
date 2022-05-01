@@ -92,3 +92,21 @@ function fetchImage(productId) {
 function callBackFunction(productId) {
     setTimeout(function(){ fetchAnotherImage(productId, 1); }, 1000);
 }
+
+function fetchAnotherImage(productId, offset) {
+    fetch('/image/' + productId + '/' + offset)
+        .then(function(response) {
+            if(response.status == 200)
+                return response.blob();
+        })
+        .then(function(blob) {
+            if(blob) {
+                imageContainer.innerHTML += `<div class="carousel-item">
+                                          <img class="d-block w-100" id='img-${offset}' alt="surf">
+                                      </div>`;
+                document.querySelector(`#img-${offset}`).src = URL.createObjectURL(blob);
+                fetchAnotherImage(productId, offset+1);
+            }
+        });
+}
+
