@@ -21,3 +21,16 @@ $.getJSON('/user', json => {
         document.querySelector('#addToBasketButton').hidden = false;
     }
 });
+
+function fetchUser(userId) {
+    var url = '/users/' + userId;
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            user = jsonData;
+        });
+    return false;
+}
+
