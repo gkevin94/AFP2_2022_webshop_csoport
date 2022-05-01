@@ -75,3 +75,16 @@ function fetchFeedbacks(productId) {
         });
 }
 
+function fetchImage(productId) {
+    fetch('/image/' + productId + '/' + 0)
+        .then(function(response) {
+            if(response.status == 200)
+                return response.blob();
+            else
+                document.querySelector("#image").src = 'images/default.jpg';
+        })
+        .then(function(blob) {
+            document.querySelector("#image").src = URL.createObjectURL(blob);
+            callBackFunction(productId);
+        });
+}
