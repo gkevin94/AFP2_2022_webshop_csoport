@@ -11,3 +11,13 @@ imageContainer.innerHTML = "";
 imageContainer.innerHTML += `<div class="carousel-item active">
                                  <img class="d-block w-100" id="image" alt="surf">
                              </div>`;
+
+$.getJSON('/user', json => {
+    if(json.id != 0){
+        var userId = json.id;
+        fetchUser(userId);
+    }
+    if (json.role != 'VISITOR') {
+        document.querySelector('#addToBasketButton').hidden = false;
+    }
+});
