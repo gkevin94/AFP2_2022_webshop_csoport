@@ -65,3 +65,10 @@ function checkAddress(){
         addToOrders(newAddress.value);
     }
 }
+
+function checkoutRadios(){
+    let deliveryDiv = document.querySelector('#deliveryDiv');
+    for (let i = 0; i < deliveryDiv.children.length; i++) {
+        deliveryDiv.children[i].children[2].checked = false;
+    }
+}
