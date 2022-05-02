@@ -221,6 +221,25 @@ function addToBasket() {
         });
 }
 
+function handleAddToBasketButton() {
+    var address = (new URL(document.location)).searchParams.get('address');
+    var url = '/basket';
+    fetch(url, {
+        method: 'GET'
+    })
+        .then(function (response) {
+            if (response.ok == false) {
+                window.location.href = '/login';
+            } else {
+                return response.json();
+            }
+        })
+        .then(function (jsonData) {
+            addToBasket();
+        });
+}
+
+
 function addGoToBasketButton() {
     document.querySelector('#basketButton').innerHTML =
         '<button type="button" class="btn btn-outline-primary">Irány a kosár</button>';
