@@ -239,3 +239,75 @@ function showProduct(jsonData) {
     manufacture.innerHTML = jsonData.manufacture;
     price.innerHTML = jsonData.price;
 }
+
+function newFeedback() {
+    console.log(user);
+    if(typeof user === "undefined"){
+        alert("Be kell jelentkeznie az értékeléshez");
+        return;
+    }
+
+    var feedbackButton = document.getElementById('feedback-button');
+    var date = new Date(Date.now());
+    date.setHours(date.getHours()+2)
+    var dateNow = date.toISOString().substring(0,19);
+    var feedbackText = document.getElementById('feedback-text');
+    var rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+
+    console.log(dateNow);
+    console.log('Feedback '+feedbackText.value);
+    console.log('Rating :'+rating);
+    console.log('User ID :'+user.id);
+    console.log('Product ID :'+ product.id);
+
+    var request =
+        {
+            "feedbackDate": dateNow,
+            "feedback": feedbackText.value,
+            "rating": rating,
+            "user": {
+                "id": user.id,
+                "name": user.name,
+                "email": null,
+                "userName": user.userName,
+                "password": user.password,
+                "enabled": user.enabled,
+                "role": user.role,
+                "userStatus": user.userStatus
+            },
+            "product": {
+                "id": product.id,
+                "code": product.code,
+                "address": product.address,
+                "name": product.name,
+                "manufacture":product.manufacture,
+                "price": product.price,
+                "productStatus": product.productStatus,
+                "category": {
+                    "id": product.category.id,
+                    "name": product.category.name,
+                    "ordinal": 1
+                }
+            }
+        }
+
+    fetch("/feedback" , {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        }).
+    then(function (jsonData) {
+        if (jsonData.resultStatusEnum == "OK") {
+            fetchProduct();
+            alert(jsonData.message);
+        } else {
+            alert(jsonData.message);
+        }
+    });
+    return false;
+}
