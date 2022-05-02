@@ -52,3 +52,16 @@ function addToOrders(address){
         }
     })
 }
+
+function checkAddress(){
+    let deliveryDiv = document.querySelector('#deliveryDiv');
+    let newAddress = document.querySelector('#inputNewAddress');
+    for (let i = 0; i < deliveryDiv.children.length; i++) {
+        if (deliveryDiv.children[i].children[2].checked == true) {
+            addToOrders(deliveryDiv.children[i].children[0].innerHTML);
+        }
+    }
+    if (newAddress.value) {
+        addToOrders(newAddress.value);
+    }
+}
