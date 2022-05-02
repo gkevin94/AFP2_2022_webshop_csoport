@@ -84,3 +84,17 @@ function plus(address) {
     summarizer(address);
     basketRefresh();
 }
+
+function summarizer(address){
+    var sum = 0;
+    var productArr = document.querySelector('#list-product').children;
+    for (let i = 0; i < productArr.length; i++) {
+        const element = productArr[i];
+        var piece = parseInt(element.querySelector("[id^='changeQuantity-']").innerText);
+        console.log(piece);
+        var price = parseInt(element.querySelector("[id^='price-']").innerText);
+        console.log(price)
+        sum += piece * price;
+    }
+    document.getElementById("total-price").innerHTML = sum;
+}
