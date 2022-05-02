@@ -1,3 +1,5 @@
+fetchBasket();
+
 function fetchBasket(){
     var url = "/basket";
     fetch(url)
