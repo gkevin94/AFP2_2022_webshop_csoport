@@ -76,3 +76,11 @@ function minus(address) {
     summarizer(address);
     basketRefresh();
 }
+
+function plus(address) {
+    var pieceSpan = document.querySelector(`#changeQuantity-${address}`);
+    pieceSpan.innerHTML = parseInt(pieceSpan.innerText) + 1;
+    updatePieces(address, parseInt(pieceSpan.innerText));
+    summarizer(address);
+    basketRefresh();
+}
