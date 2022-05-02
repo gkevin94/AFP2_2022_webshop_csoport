@@ -1,7 +1,7 @@
 package com.cafebabes.cafebabeswebshop.dashboard;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
-@RestController
+@Service
 public class DashboardService {
 }
