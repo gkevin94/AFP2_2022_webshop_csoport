@@ -98,3 +98,21 @@ function summarizer(address){
     }
     document.getElementById("total-price").innerHTML = sum;
 }
+
+function updatePieces(address, piece) {
+    var request = {
+        "pieces": piece,
+        "address": address
+    }
+
+    fetch("/basket", {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response;
+        })
+}
