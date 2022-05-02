@@ -15,4 +15,24 @@ public class Dashboard {
         this.allOrders = allOrders;
         this.activeOrders = activeOrders;
     }
+
+    public int getAllUsers() {
+        return allUsers;
+    }
+
+    public int getAllProducts() {
+        return allProducts;
+    }
+
+    public int getActiveProducts() {
+        return activeProducts;
+    }
+
+    public int getAllOrders() {
+        return allOrders;
+    }
+
+    public int getActiveOrders() {
+        return activeOrders;
+    }
 }
