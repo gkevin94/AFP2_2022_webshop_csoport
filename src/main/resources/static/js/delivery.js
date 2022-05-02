@@ -24,7 +24,31 @@ function showDeliveries(jsonData){
 }
 
 function addNewAddress(){
-    var div = document.querySelector('#new-address');
+    let div = document.querySelector('#new-address');
     div.innerHTML = `<label for="inputNewAddress" >Szállítási cím megadása (ország, város, utca, házszám, emelet, irányítószám)</label>
      <input type="text" id="inputNewAddress" onfocus=checkoutRadios() max-length=255 style="width:600px;">`;
+}
+
+function addToOrders(address){
+    console.log(address);
+    let request = {
+        "deliveryAddress": address
+    }
+
+    let url = "/myorders";
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    }).then(function (response) {
+        return response.json();
+    }).then(function (jsonData) {
+        console.log(jsonData.status);
+        console.log(jsonData.message);
+        if (jsonData.status == 'OK') {
+            window.location.href = "/succesfulorder.html";
+        }
+    })
 }
