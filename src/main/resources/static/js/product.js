@@ -311,3 +311,31 @@ function newFeedback() {
     });
     return false;
 }
+
+function deleteFeedback(feedbackId){
+
+    var feedback;
+    for(var i = 0; i<feedbacks.length; i++){
+        if(feedbacks[i].id == feedbackId){
+            feedback = feedbacks[i];
+            break;
+        }
+    }
+
+    console.log("feedback-hez tartozó user id-ja = " +feedback.user.id);
+    console.log("a bejelentkezett user id-ja = "+ user.id);
+
+    if(user.id == feedback.user.id){
+
+        fetch("/feedback/" + feedback.id, {
+            method: "DELETE",
+        })
+            .then(function (response) {
+                fetchProduct();
+            });
+    }else{
+        alert("Ez nem az Ön értékelése, ezért nem törölheti");
+    }
+
+}
+
