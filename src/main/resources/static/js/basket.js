@@ -98,3 +98,33 @@ function summarizer(address){
     }
     document.getElementById("total-price").innerHTML = sum;
 }
+
+function updatePieces(address, piece) {
+    var request = {
+        "pieces": piece,
+        "address": address
+    }
+
+    fetch("/basket", {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response;
+        })
+}
+
+function removeItemFromBasket(product_address) {
+    var url = "/basket/" + product_address;
+    console.log(url)
+    return fetch(url, {
+        method: "DELETE"
+    })
+        .then(function (response) {
+            fetchBasket();
+            basketRefresh();
+        })
+}
