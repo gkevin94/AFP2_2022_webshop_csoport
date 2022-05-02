@@ -66,3 +66,13 @@ function showBasket(jsonData){
     document.getElementById("total-price").innerHTML = sum;
 
 }
+
+function minus(address) {
+    var pieceSpan = document.querySelector(`#changeQuantity-${address}`);
+    if(pieceSpan.innerHTML <= 1)
+        removeItemFromBasket(address);
+    pieceSpan.innerHTML = parseInt(pieceSpan.innerText) - 1;
+    updatePieces(address, parseInt(pieceSpan.innerText));
+    summarizer(address);
+    basketRefresh();
+}
