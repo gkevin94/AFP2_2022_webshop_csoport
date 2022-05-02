@@ -116,3 +116,15 @@ function updatePieces(address, piece) {
             return response;
         })
 }
+
+function removeItemFromBasket(product_address) {
+    var url = "/basket/" + product_address;
+    console.log(url)
+    return fetch(url, {
+        method: "DELETE"
+    })
+        .then(function (response) {
+            fetchBasket();
+            basketRefresh();
+        })
+}
