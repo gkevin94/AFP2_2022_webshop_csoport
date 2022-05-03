@@ -66,7 +66,7 @@ function fetchProductsWithStartAndSizeAndCategory() {
         "name": category
     };
 
-    fetch("/products/"+start+"/"+size, {
+    fetch("/products/" + start + "/" + size, {
         method: "POST",
         body: JSON.stringify(request),
         headers: {
@@ -82,4 +82,14 @@ function fetchProductsWithStartAndSizeAndCategory() {
     });
 
     getButtons(size, category);
+}
+
+function fetchAdvice(){
+    fetch("/advice")
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (jsonData){
+        showAdvice(jsonData);
+    })
 }
