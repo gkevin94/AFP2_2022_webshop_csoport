@@ -38,3 +38,21 @@ function fetchProducts() {
         listProducts(jsonData);
     });
 }
+
+function fetchProductsWithStartAndSize() {
+    var start = url.searchParams.get("start") || 0;
+    var size = url.searchParams.get("size") || 999;
+
+    fetch("/products/"+start+"/"+size, {
+        method: "POST"
+    })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (jsonData) {
+        console.log(jsonData);
+        listProducts(jsonData);
+    });
+
+    getButtons(size);
+}
