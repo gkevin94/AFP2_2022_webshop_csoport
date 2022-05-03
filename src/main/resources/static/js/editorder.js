@@ -114,3 +114,11 @@ function savePiece(num){
         return false;
 }
 
+function deleteItem(i){
+    console.log(i);
+    let productId = document.getElementById(`deletebuttonOp${i}`).parentElement.parentElement['raw-data'].productId;
+    fetch('/products/' + productId).then(res => res.json()).then(data => {
+        removeItemFromOrders(i, data)
+    })
+}
+
