@@ -173,7 +173,32 @@ function listProducts(jsonData) {
         </div>
         </div>`;
     }
-    for (var i = 0; i < jsonData.length; i++) {
+    for (let i = 0; i < jsonData.length; i++) {
         fetchImage(jsonData[i].id);
+    }
+}
+
+function showAdvice(jsonData){
+    let container = document.querySelector("#show-advice");
+    container.setAttribute("class", "row d-flex justify-content-around p-3 mb-2 bg-light text-dark");
+    container.innerHTML = "";
+        for(let i = 0; i < jsonData.length; i++){
+            container.innerHTML +=
+            `
+                <div class="p-3 mb-2 bg-light text-dark">
+                    <div class="card-body justify-content-around align-items-center">
+                        <p class="card-text">${jsonData[i].name}</p>
+                        <p class="card-text">${jsonData[i].manufacture}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                           <a href='product.html?address=${jsonData[i].address}'>
+                            <div class="btn-group">
+                                 <button type="button" class="btn btn-lm btn-outline-secondary">Lássuk a deszkát</button>
+                            </div>
+                           </a>
+                        </div>
+                        <p class="card-text">${jsonData[i].price}</p>
+                    </div>
+                </div>
+            `
     }
 }
