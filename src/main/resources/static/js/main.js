@@ -40,10 +40,10 @@ function fetchProducts() {
 }
 
 function fetchProductsWithStartAndSize() {
-    var start = url.searchParams.get("start") || 0;
-    var size = url.searchParams.get("size") || 999;
+    let start = url.searchParams.get("start") || 0;
+    let size = url.searchParams.get("size") || 999;
 
-    fetch("/products/"+start+"/"+size, {
+    fetch("/products/" + start + "/" + size, {
         method: "POST"
     })
     .then(function (response) {
@@ -55,4 +55,31 @@ function fetchProductsWithStartAndSize() {
     });
 
     getButtons(size);
+}
+
+function fetchProductsWithStartAndSizeAndCategory() {
+    let start = url.searchParams.get("start") || 0;
+    let size = url.searchParams.get("size") || 999;
+    let category = url.searchParams.get("category");
+
+    let request = {
+        "name": category
+    };
+
+    fetch("/products/"+start+"/"+size, {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (jsonData) {
+        console.log(jsonData);
+        listProducts(jsonData);
+    });
+
+    getButtons(size, category);
 }
