@@ -28,3 +28,13 @@ if(!url.searchParams.get("start") && !url.searchParams.get("category")) {
     fetchAdvice();
 
 sizeDropdown.value = url.searchParams.get("size") || 999;
+
+function fetchProducts() {
+    fetch("/products")
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (jsonData) {
+        listProducts(jsonData);
+    });
+}
