@@ -106,8 +106,44 @@ function fetchImage(productId) {
     })
     .then(function(myBlob) {
         if(myBlob) {
-            var objectURL = URL.createObjectURL(myBlob);
+            let objectURL = URL.createObjectURL(myBlob);
             productImage.src = objectURL;
         }
     });
+}
+
+function getButtons(size, category) {
+    let buttons = document.querySelector('#page-change');
+    let request = {
+        "name": category
+    };
+    if(category) {
+        fetch("/products/0/999", {
+            method: "POST",
+            body: JSON.stringify(request),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            buttons.innerHTML = '';
+            for(let i = 0; i < jsonData.length/size ; i++) {
+                buttons.innerHTML += `<a href='index.html?start=${i*size}&size=${size}&category=${category}'><button type="button" class="btn btn-lm btn-outline-secondary">${i+1}</button></a>`;
+            }
+        });
+    } else {
+    fetch("/products")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            buttons.innerHTML = '';
+            for(let i = 0; i < jsonData.length/size ;i++) {
+                buttons.innerHTML += `<a href='index.html?start=${i*size}&size=${size}'><button type="button" class="btn btn-lm btn-outline-secondary">${i+1}</button></a>`;
+            }
+        });
+    }
 }
