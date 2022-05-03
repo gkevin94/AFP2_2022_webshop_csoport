@@ -147,3 +147,33 @@ function getButtons(size, category) {
         });
     }
 }
+
+function listProducts(jsonData) {
+    let container = document.querySelector('#list-products');
+    container.innerHTML = "";
+    for (let i = 0; i < jsonData.length; i++) {
+        container.innerHTML += `<div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <img class="card-img-top"
+                id='img-${jsonData[i].id}'
+                alt="surfboard image">
+            <div class="card-body">
+                <p class="card-text surf medium">${jsonData[i].name}</p>
+                <p class="card-text">${jsonData[i].manufacture}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                   <a href='product.html?address=${jsonData[i].address}'>
+                    <div class="btn-group">
+                         <button type="button" class="btn btn-lm btn-outline-secondary">Részletek</button>
+                    </div>
+                   </a>
+                </div>
+                <small class="text-muted">${jsonData[i].price}<span> Ft</span></small>
+                <small class="text-muted">${jsonData[i].code}</small>
+            </div>
+        </div>
+        </div>`;
+    }
+    for (var i = 0; i < jsonData.length; i++) {
+        fetchImage(jsonData[i].id);
+    }
+}
