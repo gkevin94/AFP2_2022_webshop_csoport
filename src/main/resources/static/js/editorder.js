@@ -122,3 +122,24 @@ function deleteItem(i){
     })
 }
 
+function removeItemFromOrders(i, product) {
+    let id = document.getElementById(`deletebuttonOp${i}`).parentElement.parentElement['raw-data'].orderId;
+    console.log("/orders/" + id + "/" + product.address);
+
+    if (!confirm("Biztos, hogy törli a tételt?")) {
+        return;
+    }
+
+    fetch("/orders/" + id + "/" + product.address, {
+        method: "DELETE"
+    }).then(response => response.json()).then(jsonData => {
+        if (jsonData.status == 'OK') {
+            document.getElementById("message-div").setAttribute("class", "alert alert-success");
+            document.querySelector("#message-div").innerHTML = "Törölve a(z) " + product.address + " termék";
+            fetchOrders();
+        } else {
+            document.getElementById("message-div").setAttribute("class", "alert alert-danger");
+            document.querySelector("#message-div").innerHTML = "Nem sikerült a törlés";
+        }
+    });
+}
