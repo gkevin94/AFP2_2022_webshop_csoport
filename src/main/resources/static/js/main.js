@@ -93,3 +93,21 @@ function fetchAdvice(){
         showAdvice(jsonData);
     })
 }
+
+function fetchImage(productId) {
+    let productImage = document.querySelector(`#img-${productId}`);
+
+    fetch('/image/' + productId + '/' + 0)
+    .then(function(response) {
+        if(response.status == 200) {
+            return response.blob();
+        }
+        productImage.src = 'images/default.jpg';
+    })
+    .then(function(myBlob) {
+        if(myBlob) {
+            var objectURL = URL.createObjectURL(myBlob);
+            productImage.src = objectURL;
+        }
+    });
+}
