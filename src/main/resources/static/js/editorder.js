@@ -84,3 +84,33 @@ function editPiece(num){
     let save = document.getElementById(`savebuttonOp${num}`);
     save.style.display = 'inline';
 }
+
+function savePiece(num){
+    let productId = document.getElementById(`editbuttonOp${num}`).parentElement.parentElement['raw-data'].productId;
+    let piece = document.getElementById(`inputQuantityOp${num}`).value;
+
+    let request = {
+        "pieces": piece,
+        "productId": productId
+    }
+
+    fetch("/orders/piece", {
+            method: "POST",
+            body: JSON.stringify(request),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(function (response) {
+            return response;
+        })
+        .then(function (jsonData) {
+            if (jsonData.ok == true) {
+                document.getElementById(`pieceTd${num}`).innerHTML = piece;
+                document.getElementById(`editbuttonOp${num}`).style.display = 'inline';
+                document.getElementById(`savebuttonOp${num}`).style.display = 'none';
+            }
+        });
+        return false;
+}
+
