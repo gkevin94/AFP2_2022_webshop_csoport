@@ -35,9 +35,42 @@
             <div class="mw-100">
                 <a style="position: absolute; top: 45%; left: 50%;" class="btn btn-xl btn-outline-danger" href="#content" role="button">Irány a szörfdeszkák!</a>
             </div>
+
+            <div class="container" id="content">
+                <br>
+                <div class="row">
+                    <div class="col text-center">
+                        <label for="size-select">Megjelenített termékek: </label>
+                        <select id="size-select" class="browser-default custom-select">
+                            <option value="999" selected>összes 1 oldalon</option>
+                            <option value="6">6/oldal</option>
+                            <option value="12">12/oldal</option>
+                            <option value="30">30/oldal</option>
+                        </select>
+                    </div>
+                    <div class="col text-center">
+                        <label for="category-select">Kategória: </label>
+                        <select id="category-select" class="browser-default custom-select">
+                            <option value="all" selected>Összes</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row" id="list-products">
+        
+                </div>
+                <div class="row">
+                    <div class="col text-center" id="page-change">
+                        <button type="button" class="btn btn-lm btn-outline-secondary">1</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        
+            <div id="show-advice">
+            </div>
         </main>
         
-
         <div class="jumbotron text-center" style="margin-bottom:0;margin-top:5em;">
             <a class="fb-ic">
                 <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
