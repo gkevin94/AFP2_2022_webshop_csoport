@@ -72,3 +72,15 @@ function showTable(jsonData) {
         table.appendChild(tr);
     }
 }
+
+function editPiece(num){
+    let piece = document.getElementById(`pieceTd${num}`);
+    let pieceData = piece.innerHTML;
+
+    piece.innerHTML = `<input id="inputQuantityOp${num}" type="number" step="1" value= '${pieceData}' style="width:40px;">`
+
+    let edit = document.getElementById(`editbuttonOp${num}`);
+    edit.style.display = 'none';
+    let save = document.getElementById(`savebuttonOp${num}`);
+    save.style.display = 'inline';
+}
