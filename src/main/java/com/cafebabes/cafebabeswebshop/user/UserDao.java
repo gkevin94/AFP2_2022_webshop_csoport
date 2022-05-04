@@ -37,3 +37,8 @@ public class UserDao {
         jdbcTemplate.update("UPDATE basket SET user_id = NULL WHERE user_id = ?", id);
         jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
     }
+
+    public void updateUser(long id, com.training360.cafebabeswebshop.user.User user) {
+        jdbcTemplate.update("UPDATE users SET name = ?, email = ?, user_name = ?, password = ?, enabled = ?, role = ?, user_status = ? WHERE id = ?",
+                user.getName(), user.getEmail(), user.getUserName(), user.getPassword(), user.getEnabled(), user.getRole(), user.getUserStatus(), id);
+    }
