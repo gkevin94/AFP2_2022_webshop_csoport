@@ -65,3 +65,30 @@ public class UserController {
         }
         return new ResultStatus(ResultStatusEnum.NOT_OK, "A felhasználó törlése sikertelen volt.");
     }
+
+    @PostMapping("/users/{id}")
+    public ResultStatus updateUser(@PathVariable long id, @RequestBody com.training360.cafebabeswebshop.user.User user) {
+        if (userValidator.userCanBeSaved(user)) {
+            userService.updateUser(id, user);
+            return new ResultStatus(ResultStatusEnum.OK, "A felhasználó sikeresen módosításra került");
+        }
+        return new ResultStatus(ResultStatusEnum.NOT_OK, "A módosítás sikertelen volt");
+    }
+
+    @PostMapping("/users")
+    public ResultStatus createUser(@RequestBody com.training360.cafebabeswebshop.user.User user) {
+        if (!userValidator.userCanBeSaved(user)) {
+            return new ResultStatus(ResultStatusEnum.NOT_OK, "Üres név vagy jelszó lett megadva");
+        }
+        if (!userValidator.userNameIsUnique(user)) {
+            return new ResultStatus(ResultStatusEnum.NOT_OK, String.format("\"%s\" már regisztrált felhasználó!", user.getUserName()));
+        }
+        long id = userService.insertUserAndGetId(user);
+        return new ResultStatus(ResultStatusEnum.OK, String.format("\"%s\" sikeresen mentésre került. ( id: %d )", user.getUserName(), id));
+    }
+
+    @GetMapping("/users/{id}")
+    public com.training360.cafebabeswebshop.user.User getUserById(@PathVariable long id) {
+        return userService.getUserById(id);
+    }
+}
