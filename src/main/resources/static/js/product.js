@@ -221,6 +221,25 @@ function addToBasket() {
         });
 }
 
+function handleAddToBasketButton() {
+    var address = (new URL(document.location)).searchParams.get('address');
+    var url = '/basket';
+    fetch(url, {
+        method: 'GET'
+    })
+        .then(function (response) {
+            if (response.ok == false) {
+                window.location.href = '/login';
+            } else {
+                return response.json();
+            }
+        })
+        .then(function (jsonData) {
+            addToBasket();
+        });
+}
+
+
 function addGoToBasketButton() {
     document.querySelector('#basketButton').innerHTML =
         '<button type="button" class="btn btn-outline-primary">Irány a kosár</button>';
@@ -239,3 +258,150 @@ function showProduct(jsonData) {
     manufacture.innerHTML = jsonData.manufacture;
     price.innerHTML = jsonData.price;
 }
+
+function newFeedback() {
+    console.log(user);
+    if(typeof user === "undefined"){
+        alert("Be kell jelentkeznie az értékeléshez");
+        return;
+    }
+
+    var feedbackButton = document.getElementById('feedback-button');
+    var date = new Date(Date.now());
+    date.setHours(date.getHours()+2)
+    var dateNow = date.toISOString().substring(0,19);
+    var feedbackText = document.getElementById('feedback-text');
+    var rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+
+    console.log(dateNow);
+    console.log('Feedback '+feedbackText.value);
+    console.log('Rating :'+rating);
+    console.log('User ID :'+user.id);
+    console.log('Product ID :'+ product.id);
+
+    var request =
+        {
+            "feedbackDate": dateNow,
+            "feedback": feedbackText.value,
+            "rating": rating,
+            "user": {
+                "id": user.id,
+                "name": user.name,
+                "email": null,
+                "userName": user.userName,
+                "password": user.password,
+                "enabled": user.enabled,
+                "role": user.role,
+                "userStatus": user.userStatus
+            },
+            "product": {
+                "id": product.id,
+                "code": product.code,
+                "address": product.address,
+                "name": product.name,
+                "manufacture":product.manufacture,
+                "price": product.price,
+                "productStatus": product.productStatus,
+                "category": {
+                    "id": product.category.id,
+                    "name": product.category.name,
+                    "ordinal": 1
+                }
+            }
+        }
+
+    fetch("/feedback" , {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        }).
+    then(function (jsonData) {
+        if (jsonData.resultStatusEnum == "OK") {
+            fetchProduct();
+            alert(jsonData.message);
+        } else {
+            alert(jsonData.message);
+        }
+    });
+    return false;
+}
+
+function deleteFeedback(feedbackId){
+
+    var feedback;
+    for(var i = 0; i<feedbacks.length; i++){
+        if(feedbacks[i].id == feedbackId){
+            feedback = feedbacks[i];
+            break;
+        }
+    }
+
+    console.log("feedback-hez tartozó user id-ja = " +feedback.user.id);
+    console.log("a bejelentkezett user id-ja = "+ user.id);
+
+    if(user.id == feedback.user.id){
+
+        fetch("/feedback/" + feedback.id, {
+            method: "DELETE",
+        })
+            .then(function (response) {
+                fetchProduct();
+            });
+    }else{
+        alert("Ez nem az Ön értékelése, ezért nem törölheti");
+    }
+
+}
+
+function showProductNotFound() {
+    var content = document.getElementById("content");
+    var pageNotFound = document.getElementById("page-not-found");
+    pageNotFound.innerHTML = ` <br>
+                                <div class="errorStlye">
+                                    <div class="d-flex justify-content-center" >
+                                        <h1 class= "surf medium">Sajnos ilyen termékkel nem rendelkezünk...</h1>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-center">
+                                        <img src="https://vignette.wikia.nocookie.net/kenny-the-shark/images/2/24/KTS_Gallery_570x402_08.jpg/revision/latest/scale-to-width-down/310?cb=20130523023812">
+                                    </div>
+                                 </div>`
+    content.style.display = "none";
+}
+
+//Init Star Rating System
+document.addEventListener('DOMContentLoaded', function(){
+    let stars = document.querySelectorAll('.star');
+    stars.forEach(function(star){
+        star.addEventListener('click', setRating);
+    });
+
+    let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+    let target = stars[rating - 1];
+    target.dispatchEvent(new MouseEvent('click'));
+});
+function setRating(ev){
+    let span = ev.currentTarget;
+    let stars = document.querySelectorAll('.star');
+    let match = false;
+    let num = 0;
+    stars.forEach(function(star, index){
+        if(match){
+            star.classList.remove('rated');
+        }else{
+            star.classList.add('rated');
+        }
+        //are we currently looking at the span that was clicked
+        if(star === span){
+            match = true;
+            num = index + 1;
+        }
+    });
+    document.querySelector('.stars').setAttribute('data-rating', num);
+}
+
