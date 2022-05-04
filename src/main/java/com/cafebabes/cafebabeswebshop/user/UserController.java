@@ -57,3 +57,11 @@ public class UserController {
         }
         return new com.training360.cafebabeswebshop.user.User(1, "VISITOR");
     }
+
+    @DeleteMapping("/users/{id}")
+    public ResultStatus deleteUserById(@PathVariable long id) {
+        if (userValidator.deletionWasSuccessFul(id)) {
+            return new ResultStatus(ResultStatusEnum.OK, "A felhasználó törlése sikeres volt.");
+        }
+        return new ResultStatus(ResultStatusEnum.NOT_OK, "A felhasználó törlése sikertelen volt.");
+    }
