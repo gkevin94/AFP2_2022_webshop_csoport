@@ -65,10 +65,12 @@ public class UserDao {
 
         return keyHolder.getKey().longValue();
     }
+
     public com.training360.cafebabeswebshop.user.User getUserById(long id) {
         return jdbcTemplate.queryForObject("SELECT id, name, email, user_name, password, enabled, role, user_status FROM users WHERE id = ? ",
                 USER_ROW_MAPPER, id);
     }
+
     public List<com.training360.cafebabeswebshop.user.User> getUserByName(String userName) {
         return jdbcTemplate.query("SELECT id, name, email, user_name, password, enabled, role, user_status FROM users WHERE user_name = ? LIMIT 1",
                 USER_ROW_MAPPER, userName);
