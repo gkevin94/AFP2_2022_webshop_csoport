@@ -65,3 +65,7 @@ public class UserDao {
 
         return keyHolder.getKey().longValue();
     }
+    public com.training360.cafebabeswebshop.user.User getUserById(long id) {
+        return jdbcTemplate.queryForObject("SELECT id, name, email, user_name, password, enabled, role, user_status FROM users WHERE id = ? ",
+                USER_ROW_MAPPER, id);
+    }
