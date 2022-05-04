@@ -42,3 +42,9 @@ public class UserDao {
         jdbcTemplate.update("UPDATE users SET name = ?, email = ?, user_name = ?, password = ?, enabled = ?, role = ?, user_status = ? WHERE id = ?",
                 user.getName(), user.getEmail(), user.getUserName(), user.getPassword(), user.getEnabled(), user.getRole(), user.getUserStatus(), id);
     }
+
+    public void updateUserWithoutPassword(long id, com.training360.cafebabeswebshop.user.User user) {
+        jdbcTemplate.update("UPDATE users SET name = ?, email = ?, user_name = ?, enabled = ?, role = ?, user_status = ? WHERE id = ?",
+                user.getName(), user.getEmail(), user.getUserName(), user.getEnabled(), user.getRole(), user.getUserStatus(), id);
+    }
+
