@@ -20,3 +20,24 @@ public class UserController {
         this.userService = userService;
         this.userValidator = new UserValidator(userService);
     }
+
+    @GetMapping("/users")
+    public List<com.training360.cafebabeswebshop.user.User> listUsers() {
+        return userService.listUsers();
+    }
+
+    @GetMapping("/user")
+    public com.training360.cafebabeswebshop.user.User getUser(Authentication authentication) {
+        if (authentication == null)
+            return new com.training360.cafebabeswebshop.user.User(1, "VISITOR");
+
+        com.training360.cafebabeswebshop.user.User user = userService.getUserByName(authentication.getName()).get();
+        if (user.getRole().equals("ROLE_ADMIN")) {
+            return new com.training360.cafebabeswebshop.user.User(user.getId(), user.getName(), authentication.getName(), 1, "ROLE_ADMIN");
+        } else if (user.getRole().equals("ROLE_USER")) {
+            return new com.training360.cafebabeswebshop.user.User(user.getId(), user.getName(), authentication.getName(), 1, "ROLE_USER");
+        } else {
+            return new com.training360.cafebabeswebshop.user.User(1, "VISITOR");
+        }
+    }
+
