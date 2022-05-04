@@ -48,3 +48,20 @@ public class UserDao {
                 user.getName(), user.getEmail(), user.getUserName(), user.getEnabled(), user.getRole(), user.getUserStatus(), id);
     }
 
+    public long insertUserAndGetId(com.training360.cafebabeswebshop.user.User user) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(connection -> {
+                    PreparedStatement ps =
+                            connection.prepareStatement("INSERT INTO users(name, enabled, user_name, password) VALUES ( ?, ?, ?, ?)",
+                                    Statement.RETURN_GENERATED_KEYS);
+                    ps.setString(1, user.getName());
+                    ps.setInt(2, 1);
+                    ps.setString(3, user.getUserName());
+                    ps.setString(4, user.getPassword());
+                    return ps;
+                }, keyHolder
+        );
+
+        return keyHolder.getKey().longValue();
+    }
