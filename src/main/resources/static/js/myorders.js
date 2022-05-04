@@ -73,3 +73,15 @@ function showTableBody(jsonData, i, j){
 
     tbody.appendChild(tr);
 }
+
+function showTable(jsonData){
+    showTableHead(jsonData);
+    for (let i = 0; i < jsonData.length; i++) {
+        for (let j = 0; j < jsonData[i].orderedProducts.length ; j++) {
+            showTableBody(jsonData, i, j);
+        }
+        if (i < jsonData.length - 2) {
+            showTableHead(jsonData);
+        }   
+    }
+}
