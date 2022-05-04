@@ -41,3 +41,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/role")
+    public com.training360.cafebabeswebshop.user.User determineRole(Authentication authentication) {
+        if (authentication == null)
+            return new com.training360.cafebabeswebshop.user.User(1, "VISITOR");
+
+        Collection<? extends GrantedAuthority> authorities
+                = authentication.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
+            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+                return new com.training360.cafebabeswebshop.user.User(authentication.getName(), 1, "ROLE_USER");
+            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                return new com.training360.cafebabeswebshop.user.User(authentication.getName(), 1, "ROLE_ADMIN");
+            }
+        }
+        return new com.training360.cafebabeswebshop.user.User(1, "VISITOR");
+    }
