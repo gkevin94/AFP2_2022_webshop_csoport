@@ -23,3 +23,17 @@ public class UserDao {
             rs.getString("role"),
             rs.getString("user_status")));
     private JdbcTemplate jdbcTemplate;
+
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<com.training360.cafebabeswebshop.user.User> listUsers() {
+        return jdbcTemplate.query("SELECT id, name, email, user_name, password, enabled, role, user_status FROM users", USER_ROW_MAPPER);
+    }
+
+    public void deleteUserById(long id) {
+        jdbcTemplate.update("UPDATE orders SET user_id = NULL WHERE user_id = ?", id);
+        jdbcTemplate.update("UPDATE basket SET user_id = NULL WHERE user_id = ?", id);
+        jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
+    }
