@@ -1,5 +1,7 @@
 package com.cafebabes.cafebabeswebshop.order;
 
+import com.cafebabes.cafebabeswebshop.delivery.Delivery;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
