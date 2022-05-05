@@ -64,5 +64,41 @@ function showIncomeTable(jsonData) {
         tr.appendChild(countTd);
 
         incomeTable.appendChild(tr);
+        if(jsonData[i].month == 1){
+            jan += jsonData[i].total;
+        }
+        if(jsonData[i].month == 2){
+            february += jsonData[i].total;
+        }
+        if(jsonData[i].month == 3){
+            march += jsonData[i].total;
+        }
+        if(jsonData[i].month == 4){
+            april += jsonData[i].total;
+        }
+        if(jsonData[i].month == 5){
+            may += jsonData[i].total;
+        }
+        if(jsonData[i].month == 6){
+            jun += jsonData[i].total;
+        }
+        if(jsonData[i].month == 7){
+            jul += jsonData[i].total;
+        }
+        if(jsonData[i].month == 8){
+            aug += jsonData[i].total;
+        }
+        if(jsonData[i].month == 9){
+            sept += jsonData[i].total;
+        }
+        if(jsonData[i].month == 10){
+            oct += jsonData[i].total;
+        }
+        if(jsonData[i].month == 11){
+            nov += jsonData[i].total;
+        }
+        if(jsonData[i].month == 12){
+            dec += jsonData[i].total;
+        }
     }
 }
