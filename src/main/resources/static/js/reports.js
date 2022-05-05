@@ -101,4 +101,150 @@ function showIncomeTable(jsonData) {
             dec += jsonData[i].total;
         }
     }
+    zingchart.THEME="classic";
+    var myConfig =
+        {
+            "type": "bar",
+            "stacked": true,
+            "stack-type": "normal",
+            "background-color": "#FFFFFF",
+            "title": {
+                "text": "",
+                "font-family": "arial",
+                "x": "40px",
+                "y": "5px",
+                "align": "left",
+                "bold": false,
+                "font-size": "16px",
+                "font-color": "#000000",
+                "background-color": "none"
+            },
+            "subtitle": {
+                "text": "<i></i>",
+                "font-family": "arial",
+                "x": "175px",
+                "y": "5px",
+                "align": "left",
+                "bold": false,
+                "font-size": "16px",
+                "font-color": "#7E7E7E",
+                "background-color": "none"
+            },
+            "plot": {
+                "bar-width": "25px",
+                "hover-state": {
+                    "visible": false
+                },
+                "animation":{
+                    "delay":300,
+                    "sequence":1
+                }
+            },
+            "labels":[
+                {
+                    "text": "SHIPPED",
+                    "background-color": "#90A23B",
+                    "font-size": "14px",
+                    "font-family": "arial",
+                    "font-weight": "normal",
+                    "font-color": "#FFFFFF",
+                    "padding": "10%",
+                    "border-radius": "3px",
+                    "offset-y":-30,
+                    "shadow": false,
+                    "callout": true,
+                    "callout-height": "10px",
+                    "callout-width": "15px",
+                    "hook":"node:plot=2;index=4"
+                },
+                {
+                    "text": "ACTIVE",
+                    "thousands-separator": ",",
+                    "background-color": "#FFC700",
+                    "font-size": "14px",
+                    "font-family": "arial",
+                    "font-weight": "normal",
+                    "font-color": "#FFFFFF",
+                    "padding": "10%",
+                    "border-radius": "3px",
+                    "shadow": false,
+                    "callout": true,
+                    "callout-height": "10px",
+                    "callout-width": "15px",
+                    "offset-y": -30,
+                    "hook":"node:plot=2;index=9"
+                }
+            ],
+            "scale-x": {
+                "values": [
+                    "JAN",
+                    "FEB",
+                    "MAR",
+                    "APR",
+                    "MAY",
+                    "JUN",
+                    "JUL",
+                    "AUG",
+                    "SEP",
+                    "OCT",
+                    "NOV",
+                    "DEC"
+                ],
+                "line-color": "#7E7E7E",
+                "tick": {
+                    "visible": false
+                },
+                "guide": {
+                    "visible": false
+                },
+                "item": {
+                    "font-family": "arial",
+                    "font-color": "#8B8B8B"
+                }
+            },
+            "scale-y": {
+                "values": "0:5000000:1000000",
+                "short": true,
+                "line-color": "#7E7E7E",
+                "tick": {
+                    "visible": false
+                },
+                "guide": {
+                    "line-style": "solid"
+                },
+                "item": {
+                    "font-family": "arial",
+                    "font-color": "#8B8B8B"
+                }
+            },
+            "series": [
+                {
+                    "values" : [
+                        jan,
+                        february,
+                        march,
+                        april,
+                        may,
+                        jun,
+                        jul,
+                        aug,
+                        sept,
+                        oct,
+                        nov,
+                        dec
+                    ],
+                    "background-color": "#90A23B"
+                },
+            ],
+            "tooltip": {
+                "visible": false
+            }
+        }
+    ;
+
+    zingchart.render({
+        id : 'myChart',
+        data : myConfig,
+    });
 }
+
