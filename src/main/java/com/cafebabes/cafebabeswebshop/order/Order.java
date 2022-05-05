@@ -51,4 +51,36 @@ public class Order {
         this.purchaseDate = purchaseDate;
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+
+    public long getSumQuantity() {
+        return sumQuantity;
+    }
+
+    public void setSumQuantity(long sumQuantity) {
+        this.sumQuantity = sumQuantity;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
 }
