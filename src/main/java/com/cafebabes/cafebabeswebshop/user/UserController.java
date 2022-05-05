@@ -1,13 +1,12 @@
 package com.cafebabes.cafebabeswebshop.user;
 
-import com.cafebabes.cafebabeswebshop.product.ResultStatus;
-import com.cafebabes.cafebabeswebshop.product.ResultStatusEnum;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+
 @RestController
 public class UserController {
 

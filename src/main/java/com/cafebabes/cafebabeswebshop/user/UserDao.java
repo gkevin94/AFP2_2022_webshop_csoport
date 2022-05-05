@@ -76,4 +76,3 @@ public class UserDao {
                 USER_ROW_MAPPER, userName);
     }
 }
-
