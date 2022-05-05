@@ -1,7 +1,6 @@
 package com.training360.cafebabeswebshop.feedback;
 
 import com.training360.cafebabeswebshop.product.Product;
-import com.training360.cafebabeswebshop.user.User;
 
 import java.time.LocalDateTime;
 
