@@ -132,3 +132,24 @@ function showTable(jsonData) {
         table.appendChild(tr);
     }
 }
+
+function editTds(num) {
+    window.location.href = `editorder.html?id=${num}`;
+}
+
+
+function deleteOrder(num) {
+    let id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
+    if (!confirm("Biztos, hogy törli a megrendelést?")) {
+        return;
+    }
+    fetch("/orders/" + id, {
+            method: "POST",
+    })
+    .then(function (response) {
+        document.getElementById("message-div").setAttribute("class", "alert alert-success");
+        document.querySelector("#message-div").innerHTML = "Törölve"
+        fetchOrders();
+    });
+}
+
