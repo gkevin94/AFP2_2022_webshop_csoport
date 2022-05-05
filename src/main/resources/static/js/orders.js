@@ -153,3 +153,20 @@ function deleteOrder(num) {
     });
 }
 
+function changeStatusToShipped(num) {
+    let id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
+    if (!confirm("Kiszállítottra állítja a megrendelés állapotát?")) {
+        return;
+    }
+
+    fetch("/orders/" + id + "/shipped", {
+        method: "POST",
+    })
+    .then(function (response) {
+        document.getElementById("message-div").setAttribute("class", "alert alert-success");
+        document.querySelector("#message-div").innerHTML = "Státusz módosítva erre: kiszállítva"
+        fetchOrders();
+    });
+
+}
+
