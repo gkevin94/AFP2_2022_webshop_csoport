@@ -1,5 +1,10 @@
 package com.cafebabes.cafebabeswebshop.order;
 
+import com.cafebabes.cafebabeswebshop.product.Product;
+import com.cafebabes.cafebabeswebshop.product.ProductService;
+import com.cafebabes.cafebabeswebshop.user.User;
+import com.cafebabes.cafebabeswebshop.user.UserService;
+
 public class OrderValidator {
     private OrderService orderService;
     private UserService userService;
