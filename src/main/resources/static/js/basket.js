@@ -128,3 +128,33 @@ function removeItemFromBasket(product_address) {
             basketRefresh();
         })
 }
+
+function emptyBasket() {
+    var url = "/basket";
+    fetch(url, {
+        method: "DELETE"
+    })
+        .then(function(){
+            fetchBasket();
+            basketRefresh();
+        });
+}
+
+function checkIfEmpty(){
+    var url = "/basket";
+    fetch(url)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(jsonData) {
+            //  console.log(jsonData);
+            if(jsonData.length == 0){
+                alert("a kosár tartalma üres");
+                return;
+            }
+            window.location.href = "/delivery.html";
+            //handleAddToOrders();
+            basketRefresh();
+        });
+}
+
