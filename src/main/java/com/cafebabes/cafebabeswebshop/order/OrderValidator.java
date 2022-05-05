@@ -1,5 +1,4 @@
 package com.cafebabes.cafebabeswebshop.order;
 
-public class Order {
-
+public class OrderValidator {
 }
