@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="16x16">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
-          integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/adminproducts.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-    <title>Kategória adminisztráció</title>
+    <script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];</script>
+    <title>Riport</title>
 </head>
 <body>
 
@@ -37,23 +37,39 @@
     </div>
 </nav>
 
-<main style="margin-top:3.5em;margin-bottom:3.5em;min-height:calc(100vh - 168px)">
-    <div class="container" id="container" style="margin-top:3.5em">
-        <br>
-        <!--<input type="checkbox" name="checkStatus" id="checkStatus"> Törölt termékek megjelenítése<br><br>-->
-        <div id="message-div"></div>
+<main style="margin-top:5em;min-height:calc(100vh - 152px);">
+    <div class="container" id="income">
         <table class="table table-striped">
             <thead>
+            <tr><th colspan="5">Összes megrendelés adata</th></tr>
             <tr>
-                <th>Sorszám</th>
-                <th>Név</th>
-                <th>Szerkesztés</th>
-                <th>Törlés</th>
+                <th>Év</th>
+                <th>Hónap</th>
+                <th>Rendelés státusz</th>
+                <th>Havi bevétel</th>
+                <th>Rendelések száma</th>
             </tr>
             </thead>
-            <tbody id="admincategories-table"></tbody>
+            <tbody id="income-table"></tbody>
         </table>
-        <button class="btn" id="createButton"><i class="fas fa-plus"></i>Új kategória</button>
+        <div id="myChart"></div>
+    </div><br>
+    <div class="container" id="trade">
+        <table class="table table-striped">
+            <thead>
+            <tr><th colspan="6">Kiszállított termékek adatai</th></tr>
+            <tr>
+                <th>Év</th>
+                <th>Hónap</th>
+                <th>Termék neve</th>
+                <th>Termék egységára</th>
+                <th>Rendelt mennyiség (db)</th>
+                <th>Összesített ár</th>
+            </tr>
+            </thead>
+            <tbody id="trade-table"></tbody>
+        </table>
+        <div id="myChart2"></div>
     </div>
 </main>
 
@@ -64,6 +80,7 @@
 </footer>
 
 <script src="js/navbarLoader.js"></script>
-<script src="js/categories.js"></script>
+<script src="js/reports.js"></script>
+
 </body>
 </html>
