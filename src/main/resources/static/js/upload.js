@@ -66,3 +66,17 @@ function fetchImage(productId, offset) {
             }
         });
 }
+
+
+function deleteImage(productId, offset) {
+    fetch('/image/' + productId + '/' + offset, {
+        method: "DELETE"
+    })
+        .then(function(response){
+            fetchImage(productId, 0);
+            return response.text();
+        })
+        .then(function(message){
+            console.log(message);
+        });
+}
