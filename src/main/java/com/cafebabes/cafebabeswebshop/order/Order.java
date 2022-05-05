@@ -83,4 +83,23 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    public List<OrderedProduct> getOrderedProducts() {
+        return orderedProducts;
+    }
+
+    public void setOrderedProducts(List<OrderedProduct> orderedProducts) {
+        this.orderedProducts = orderedProducts;
+    }
+
+    public String toString() {
+        return id + " " + purchaseDate + " " + userId + " " + total + " " + sumQuantity + " " + orderStatus;
+    }
 }
