@@ -1,3 +1,9 @@
+window.onload = function() {
+    fetchOrderReport();
+    fetchProductReport();
+};
+
+
 function fetchOrderReport() {
     fetch("/reports/orders")
         .then(function(response) {
