@@ -29,14 +29,14 @@ function handleFormSubmit() {
         return;
     }
     let request = {
-                    "name": name,
-                    "email": "email",
-                    "userName": form.username.value,
-                    "password": form.password.value,
-                    "enabled": 1,
-                    "role": "ROLE_USER",
-                    "userStatus": "ACTIVE"
-                }
+        "name": name,
+        "email": "email",
+        "userName": form.username.value,
+        "password": form.password.value,
+        "enabled": 1,
+        "role": "ROLE_USER",
+        "userStatus": "ACTIVE"
+    }
     console.log(request);
     fetch("/users/" + id, {
         method: "POST",
@@ -63,3 +63,82 @@ function handleFormSubmit() {
     });
     return false;
 }
+
+(function($){
+    let Validate = {
+        config: {
+            minLen: 8,
+            bothCase: true,
+            alphNum: true,
+            classContainer: '.formContainer',
+            classPassword: '.pass1',
+            classConfirm: '.pass2',
+            classMsgBox:'.msgBox'
+        },
+        init: function(config) {
+            $.extend(Validate.config, config);
+            this.elPassword = $(this.config.classPassword);
+            this.elConfirm = $(this.config.classConfirm);
+            this.elMsgBox = $(this.config.classMsgBox);
+  
+            let objInput = this.elPassword;
+            this.elMsgBox.hide();
+            this.elConfirm.on('click', Validate.setFocus);
+            $('body').on('focus.password', this.config.classPassword, Validate.validate);
+            $('body').on('blur.password', this.config.classPassword, Validate.validate);
+            $('body').on('keyup.password', this.config.classPassword, Validate.validate);
+        },
+        setFocus: function() {
+            let container = Validate.config.classContainer,
+            msg = $(this).closest(container).find(Validate.config.classMsgBox).text();
+            (msg !== 'passed') && $(this).closest(container).find(Validate.config.classPassword).focus();
+        },
+        showError: function(msg, objInput) {
+            let container = Validate.config.classContainer,
+            msgBox = objInput.closest(container).find('.passwordValidator'),
+            objConfirm = objInput.closest(container).find(Validate.config.classConfirm);
+            if(msg === 'passed') {
+                msgBox.html(msg).delay(500).slideUp();
+            } else {
+                msgBox.is(':hidden') ? msgBox.html(msg).slideDown() : msgBox.html(msg);
+                objConfirm.val('');
+            }
+            return false
+        },
+        validate: function() {
+            let objInput = $(this), regExp;
+  
+            if (objInput.val().length < Validate.config.minLen){
+                Validate.showError("A jelszónak legalább " + Validate.config.minLen + " karakterből kell állnia ", objInput);
+                return false;
+            } else {
+                regExp = /[a-z]/;
+                if (Validate.config.bothCase && !regExp.test(objInput.val())){
+                    Validate.showError("A jelszónak tartalmaznia kell legalább egy kisbetűt (a-z)", objInput);
+                    return false;
+                }
+  
+                regExp = /[A-Z]/;
+                if (Validate.config.bothCase && !regExp.test(objInput.val())){
+                    Validate.showError("A jelszónak tartalmaznia kell legalább egy nagybetűt (A-Z)", objInput);
+                    return false;
+                }
+  
+                regExp = /[0-9]/;
+                if (Validate.config.alphNum && !regExp.test(objInput.val())) {
+                    Validate.showError("A jelszónak tartalmaznia kell legalább egy számot (0-9)", objInput);
+                    return false;
+                }
+  
+                Validate.showError("passed", objInput)
+                return false;
+            }
+        }
+    }
+  
+    Validate.init({
+        classPassword: '.textPassword',
+        classConfirm: '.textConfirmPassword',
+        classMsgBox:'.passwordValidator'
+    })
+})(jQuery);
