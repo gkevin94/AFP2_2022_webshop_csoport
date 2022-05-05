@@ -1,5 +1,9 @@
 package com.cafebabes.cafebabeswebshop.order;
 
+import com.cafebabes.cafebabeswebshop.basket.BasketDao;
+import com.cafebabes.cafebabeswebshop.basket.BasketItem;
+import com.cafebabes.cafebabeswebshop.delivery.Delivery;
+import com.cafebabes.cafebabeswebshop.user.UserDao;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -13,9 +17,9 @@ public class OrderService {
     private OrderDao orderDao;
     private BasketDao basketDao;
     private UserDao userDao;
-    private com.training360.cafebabeswebshop.delivery.DeliveryDao deliveryDao;
+    private com.cafebabes.cafebabeswebshop.delivery.DeliveryDao deliveryDao;
 
-    public OrderService(OrderDao orderDao, BasketDao basketDao, UserDao userDao, com.training360.cafebabeswebshop.delivery.DeliveryDao deliveryDao) {
+    public OrderService(OrderDao orderDao, BasketDao basketDao, UserDao userDao, com.cafebabes.cafebabeswebshop.delivery.DeliveryDao deliveryDao) {
         this.orderDao = orderDao;
         this.basketDao = basketDao;
         this.userDao = userDao;
