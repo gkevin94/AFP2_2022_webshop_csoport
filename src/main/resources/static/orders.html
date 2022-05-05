@@ -26,6 +26,30 @@
                 </ul>
             </div>
         </nav>
+        <main style="margin-top:5em;min-height:calc(100vh - 152px);">
+            <div class="container" id="container" style="margin-top:3.5em">
+                <br>
+                <input type="checkbox" name="checkStatus" id="checkStatus" > Törölt/kiszállított rendelések megjelenítése <br><br>
+                <div id="message-div"></div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Vásárló</th>
+                        <th>Rendelés leadása</th>
+                        <th>Rendelési tételek</th>
+                        <th>Rendelés értéke</th>
+                        <th>Rendelés státusza</th>
+                        <th>Szállítási cím</th>
+                        
+                        <th>Szerkesztés</th>
+                        <th>Törlés</th>
+                        <th>Kiszállítva</th>
+                    </tr>
+                    </thead>
+                    <tbody id="orders-table"></tbody>
+                </table>
+            </div>
+            </main>
         <footer class="page-footer font-small text-light" style="background-color: black;">
             <div class="footer-copyright text-center py-3">© 2019 Copyright:
                 <a href="#"> CafeBabes csapat</a>
