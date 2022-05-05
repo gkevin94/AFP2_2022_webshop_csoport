@@ -1,4 +1,7 @@
 package com.cafebabes.cafebabeswebshop.order;
 
-public class OrderStatus {
+public enum OrderStatus {
+    ACTIVE,
+    SHIPPED,
+    DELETED
 }
