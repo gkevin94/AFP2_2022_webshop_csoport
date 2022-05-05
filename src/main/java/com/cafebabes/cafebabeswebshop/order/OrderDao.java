@@ -1,5 +1,6 @@
 package com.cafebabes.cafebabeswebshop.order;
 
+import com.cafebabes.cafebabeswebshop.delivery.Delivery;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Repository
 public class OrderDao {
-    public class OrderDao {
+
 
         private JdbcTemplate jdbcTemplate;
         private static final RowMapper<Order> ORDER_ROW_MAPPER = (rs, rowNum) -> new Order(
