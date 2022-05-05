@@ -18,6 +18,24 @@
     <link rel="stylesheet" href="css/ujindex.css">
 
     <title>Title</title>
+    <script>new WOW().init()</script>
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                document.querySelector('#toTopButton').style.display = 'block';
+            } else {
+                document.querySelector('#toTopButton').style.display = 'none';
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+
 </head>
 <body>
 
