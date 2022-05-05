@@ -1,4 +1,4 @@
-package com.training360.cafebabeswebshop.delivery;
+package com.cafebabes.cafebabeswebshop.delivery;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
