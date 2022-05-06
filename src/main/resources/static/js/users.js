@@ -117,3 +117,23 @@ function showTable(jsonData) {
 
     }
 }
+
+function deleteUser(num){
+
+    var id = document.getElementById(`deletebutton${num}`)['raw-data'].id;
+    var name = document.getElementById(`deletebutton${num}`)['raw-data'].name;
+
+    if (!confirm("Biztos, hogy törli a felhasználót?")) {
+        return;
+    }
+
+    fetch("/users/" + id, {
+        method: "DELETE",
+    })
+        .then(function (response) {
+            messageDiv.setAttribute("class", "alert alert-success");
+            document.querySelector("#message-div").innerHTML = name + " sikeresen törölve!"
+            fetchUsers();
+        });
+}
+
