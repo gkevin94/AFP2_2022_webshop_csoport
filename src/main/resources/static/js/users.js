@@ -152,3 +152,70 @@ function editTds(num){
     var save = document.getElementById(`savebutton${num}`);
     save.style.display = 'inline';
 }
+
+function saveTds(num){
+
+    var id = document.getElementById(`savebutton${num}`).parentElement.parentElement['raw-data'].id;
+    var name = document.getElementById(`nameInput${num}`).value;
+    var password = document.getElementById(`passwordInput${num}`).value;
+    var email = document.getElementById(`savebutton${num}`).parentElement.parentElement['raw-data'].email;
+    var userName = document.getElementById(`savebutton${num}`).parentElement.parentElement['raw-data'].userName;
+    var role = document.getElementById(`savebutton${num}`).parentElement.parentElement['raw-data'].role;
+
+    var request;
+    if(password == '********' || password == '') {
+        request =
+            {
+                "id": id,
+                "name": name,
+                "email": email,
+                "userName": userName,
+                "enabled": 1,
+                "role": role,
+                "userStatus": "ACTIVE"
+            }
+    } else if(checkPwd(password)) {
+        request =
+            {
+                "id": id,
+                "name": name,
+                "email": email,
+                "userName": userName,
+                "password": password,
+                "enabled": 1,
+                "role": "ROLE_USER",
+                "userStatus": "ACTIVE"
+            }
+    } else {
+        return;
+    }
+
+
+    fetch("/users/" + id, {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+            console.log(jsonData);
+
+            if (jsonData.status == "OK") {
+
+                document.getElementById(`nameTd${num}`).innerHTML = name;
+                document.getElementById(`passwordTd${num}`).innerHTML = password;
+
+                fetchUsers();
+                messageDiv.setAttribute("class", "alert alert-success");
+                messageDiv.innerHTML = jsonData.message;
+            } else {
+                messageDiv.setAttribute("class", "alert alert-danger");
+                messageDiv.innerHTML = jsonData.message;
+            }
+        });
+    return false;
+}
