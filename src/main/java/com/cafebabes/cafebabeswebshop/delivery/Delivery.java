@@ -1,4 +1,4 @@
-package com.training360.cafebabeswebshop.delivery;
+package com.cafebabes.cafebabeswebshop.delivery;
 
 public class Delivery {
 

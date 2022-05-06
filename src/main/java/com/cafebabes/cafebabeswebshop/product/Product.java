@@ -1,5 +1,7 @@
 package com.cafebabes.cafebabeswebshop.product;
 
+import com.cafebabes.cafebabeswebshop.category.Category;
+
 public class Product {
 
     private long id;
@@ -9,6 +11,7 @@ public class Product {
     private String manufacture;
     private int price;
     private String productStatus;
+    private Category category;
 
     public Product() {
     }
@@ -25,12 +28,12 @@ public class Product {
         this.productStatus = productStatus;
     }
 
-    public Product(long id, String code, String address, String name, String manufacture, int price, String productStatus/*, Category category*/) {
+    public Product(long id, String code, String address, String name, String manufacture, int price, String productStatus, Category category) {
         this(address, name, manufacture, price);
         this.id = id;
         this.code = code;
         this.productStatus = productStatus;
-        //this.category = category;
+        this.category = category;
     }
 
     public long getId() {
@@ -89,13 +92,13 @@ public class Product {
         this.productStatus = productStatus;
     }
 
-    /*public Category getCategory() {
+    public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
-    }*/
+    }
 
     @Override
     public String toString() {
