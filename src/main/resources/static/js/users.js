@@ -219,3 +219,29 @@ function saveTds(num){
         });
     return false;
 }
+
+function checkPwd(str) {
+    messageDiv.setAttribute("class", "alert alert-danger");
+    if (str.length < 8) {
+        messageDiv.innerHTML = "A jelszó legalább 8 karakter legyen!";
+        return false;
+    } else if (str.length > 50) {
+        messageDiv.innerHTML = "Túl hosszú jelszó!";
+        return false;
+    } else if (str.search(/\d/) == -1) {
+        messageDiv.innerHTML = "Legalább egy számot tartalmazzon!";
+        return false;
+    } else if (str.search(/[a-zA-Z]/) == -1) {
+        messageDiv.innerHTML = "Legalább egy betűt tartalmazzon!";
+        return false;
+    } else if (str.search(/[A-Z]/) == -1) {
+        messageDiv.innerHTML = "Legalább egy nagybetűt tartalmazzon!";
+        return false;
+    } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
+        messageDiv.innerHTML = "Nem engedélyezett speciális karakter használata!";
+        return false;
+    }
+    messageDiv.setAttribute("class", "alert alert-success");
+    messageDiv.innerHTML = `Megfelelő jelszó! Kattintson a <strong>Mentés</strong> gombra!`;
+    return true;
+}
