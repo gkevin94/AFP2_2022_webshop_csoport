@@ -1,4 +1,4 @@
-package com.training360.cafebabeswebshop.feedback;
+package com.cafebabes.cafebabeswebshop.feedback;
 
 
 public class ResultStatus {

@@ -1,4 +1,4 @@
-package com.training360.cafebabeswebshop.feedback;
+package com.cafebabes.cafebabeswebshop.feedback;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,7 +1,7 @@
-package com.training360.cafebabeswebshop.feedback;
+package com.cafebabes.cafebabeswebshop.feedback;
 
-import com.training360.cafebabeswebshop.product.ProductDao;
-import com.training360.cafebabeswebshop.user.UserDao;
+import com.cafebabes.cafebabeswebshop.product.ProductDao;
+import com.cafebabes.cafebabeswebshop.user.UserDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
