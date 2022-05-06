@@ -137,3 +137,18 @@ function deleteUser(num){
         });
 }
 
+function editTds(num){
+
+    var name = document.getElementById(`nameTd${num}`);
+    var password = document.getElementById(`passwordTd${num}`);
+
+    var nameData = name.innerHTML;
+
+    name.innerHTML = `<input id="nameInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value = '${nameData}' required>`
+    password.innerHTML = `<input id="passwordInput${num}" type='text' minLength='1' maxLength='255' class='input-box'  value='********' required>`
+
+    var edit = document.getElementById(`editbutton${num}`);
+    edit.style.display = 'none';
+    var save = document.getElementById(`savebutton${num}`);
+    save.style.display = 'inline';
+}
