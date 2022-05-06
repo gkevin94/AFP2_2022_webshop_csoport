@@ -1,5 +1,7 @@
 package com.cafebabes.cafebabeswebshop.user;
 
+import com.cafebabes.cafebabeswebshop.product.ResultStatus;
+import com.cafebabes.cafebabeswebshop.product.ResultStatusEnum;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,7 @@
 package com.cafebabes.cafebabeswebshop.user;
 
+import com.cafebabes.cafebabeswebshop.product.ResultStatusEnum;
+
 public class UserValidator {
 
     UserService userService;

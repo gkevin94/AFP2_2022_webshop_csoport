@@ -1,4 +1,4 @@
-package com.training360.cafebabeswebshop.delivery;
+package com.cafebabes.cafebabeswebshop.delivery;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
