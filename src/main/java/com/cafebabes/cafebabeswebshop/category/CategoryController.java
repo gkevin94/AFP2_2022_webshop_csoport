@@ -1,5 +1,7 @@
 package com.cafebabes.cafebabeswebshop.category;
 
+import com.cafebabes.cafebabeswebshop.product.ResultStatus;
+import com.cafebabes.cafebabeswebshop.product.ResultStatusEnum;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
