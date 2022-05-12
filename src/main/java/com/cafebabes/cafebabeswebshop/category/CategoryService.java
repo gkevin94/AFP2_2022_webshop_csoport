@@ -1,5 +1,7 @@
 package com.cafebabes.cafebabeswebshop.category;
 
+import com.cafebabes.cafebabeswebshop.product.ResultStatus;
+import com.cafebabes.cafebabeswebshop.product.ResultStatusEnum;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
