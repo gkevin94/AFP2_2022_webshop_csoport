@@ -13,6 +13,11 @@ public class ProductService {
     private ProductDao productDao;
     private CategoryDao categoryDao;
 
+    public ProductService(ProductDao productDao, CategoryDao categoryDao) {
+        this.productDao = productDao;
+        this.categoryDao = categoryDao;
+    }
+
     public Product getProduct(String address) {
         return productDao.getProduct(address);
     }
