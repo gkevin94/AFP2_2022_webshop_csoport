@@ -1,3 +1,7 @@
+getNavbar();
+fetchCategories();
+basketRefresh();
+
 function getNavbar() {
     $.getJSON("/role", json => {
 
@@ -65,7 +69,6 @@ function basketRefresh() {
         document.querySelector('#cartCount').innerHTML = sum;
     });
 }
-
 
 function fetchCategories() {
     $.getJSON("/categories", json => {
