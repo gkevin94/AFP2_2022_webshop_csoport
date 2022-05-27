@@ -6,7 +6,7 @@
 | --- | --- |
 | Név: | Veres Szabolcs  |
 | Neptun kód: | NY4KT5|
-| Dátum: | 2021.01.23. |
+| Dátum: | 2022.05.26. |
 | Böngésző: | Chrome; 97.0.4692.71 (Hivatalos verzió) (64 bites)|
 | Operációs rendszer: | Windows 11 Pro |
 
