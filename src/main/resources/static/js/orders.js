@@ -12,7 +12,7 @@ function fetchOrders() {
     });
 }
 
-let selector = document.querySelector("#checkStatus");
+var selector = document.querySelector("#checkStatus");
 selector.addEventListener('change', function (event) {
     if (selector.checked) {
         fetchOrders();
@@ -22,7 +22,7 @@ selector.addEventListener('change', function (event) {
 });
 
 function checkOrderStatus(jsonData) {
-    let checkStatus = document.querySelector("#checkStatus").checked;
+    var checkStatus = document.querySelector("#checkStatus").checked;
     if (checkStatus) {
         showTable(jsonData);
     } else {
@@ -32,37 +32,37 @@ function checkOrderStatus(jsonData) {
 
 function showTable(jsonData) {
     console.log(jsonData);
-    let table = document.querySelector("#orders-table");
+    var table = document.querySelector("#orders-table");
     table.innerHTML = "";
-    for (let i = 0; i < jsonData.length; i++) {
-        let tr = document.createElement("tr");
+    for (var i = 0; i < jsonData.length; i++) {
+        var tr = document.createElement("tr");
         tr["raw-data"] = jsonData[i];
 
-        let idTd = document.createElement("td");
+        var idTd = document.createElement("td");
         idTd.innerHTML = jsonData[i].userId;
-        let idTdId = 'idTd' + i;
+        var idTdId = 'idTd' + i;
         idTd.setAttribute('id', idTdId);
         tr.appendChild(idTd);
 
-        let purchaseDateTd = document.createElement("td");
+        var purchaseDateTd = document.createElement("td");
         purchaseDateTd.innerHTML = jsonData[i].purchaseDate;
-        let purchaseDateTdId = 'purchaseDateTd' + i;
+        var purchaseDateTdId = 'purchaseDateTd' + i;
         purchaseDateTd.setAttribute('id', purchaseDateTdId);
         tr.appendChild(purchaseDateTd);
 
-        let userId = document.createElement("td");
+        var userId = document.createElement("td");
         userId.innerHTML = jsonData[i].sumQuantity;
-        let userTdId = 'userId' + i;
+        var userTdId = 'userId' + i;
         userId.setAttribute('id', userTdId);
         tr.appendChild(userId);
 
-        let total = document.createElement("td");
+        var total = document.createElement("td");
         total.innerHTML = jsonData[i].total;
-        let totalTdId = 'total' + i;
+        var totalTdId = 'total' + i;
         total.setAttribute('id', totalTdId);
         tr.appendChild(total);
 
-        let orderStatusTd = document.createElement("td");
+        var orderStatusTd = document.createElement("td");
         if(jsonData[i].orderStatus == 'ACTIVE'){
             orderStatusTd.innerHTML = "aktív";
         } else if(jsonData[i].orderStatus == 'SHIPPED'){
@@ -70,36 +70,36 @@ function showTable(jsonData) {
         } else {
             orderStatusTd.innerHTML = "törölt";
         }
-        let orderStatusTdId = 'manTd' + i;
+        var orderStatusTdId = 'manTd' + i;
         orderStatusTd.setAttribute('id', orderStatusTdId);
         tr.appendChild(orderStatusTd);
         console.log(jsonData[i].delivery);
-        let deliveryAddressTd = document.createElement("td");
+        var deliveryAddressTd = document.createElement("td");
         deliveryAddressTd.innerHTML = jsonData[i].delivery.deliveryAddress;
-        let deliveryAddressTdId = 'delTd' + i;
+        var deliveryAddressTdId = 'delTd' + i;
         deliveryAddressTd.setAttribute('id', deliveryAddressTdId);
         tr.appendChild(deliveryAddressTd);
 
         if(jsonData[i].orderStatus == "ACTIVE"){
-          let editButtonTd = document.createElement("td");
-          let editButton = document.createElement("button");
-          let editButtonId = 'editbutton' + i;
+          var editButtonTd = document.createElement("td");
+          var editButton = document.createElement("button");
+          var editButtonId = 'editbutton' + i;
           editButton.setAttribute('id', editButtonId);
           editButton.setAttribute('class', 'btn');
           editButton.setAttribute('onclick', `editTds(${jsonData[i].id})`);
           editButtonTd.appendChild(editButton);
 
-          let saveButton = document.createElement("button");
-          let saveButtonId = 'savebutton' + i;
+          var saveButton = document.createElement("button");
+          var saveButtonId = 'savebutton' + i;
           saveButton.setAttribute('id', saveButtonId);
           saveButton.setAttribute('class', 'btn');
           saveButton.setAttribute('onclick', `saveTds(${i})`);
           saveButton.style.display = 'none';
           editButtonTd.appendChild(saveButton);
 
-          let shippedButtonTd = document.createElement("td");
-          let shippedButton = document.createElement("button");
-          let shippedButtonId = "shippedButton" + i;
+          var shippedButtonTd = document.createElement("td");
+          var shippedButton = document.createElement("button");
+          var shippedButtonId = "shippedButton" + i;
           shippedButton.setAttribute("id", shippedButtonId);
           shippedButton.setAttribute("class", "btn");
           shippedButton.setAttribute("onclick", `changeStatusToShipped(${i})`);
@@ -109,9 +109,9 @@ function showTable(jsonData) {
           saveButton.innerHTML = `<i class="fa fa-save"></i> Mentés`;
           shippedButton.innerHTML = `<i class="fas fa-truck"></i> Kiszállítva`;
 
-          let deleteButtonTd = document.createElement("td");
-          let deleteButton = document.createElement("button");
-          let deleteButtonId = 'deletebutton' + i;
+          var deleteButtonTd = document.createElement("td");
+          var deleteButton = document.createElement("button");
+          var deleteButtonId = 'deletebutton' + i;
           deleteButton.setAttribute('id', deleteButtonId);
           deleteButton.setAttribute('class', 'btn');
           deleteButton.setAttribute('onclick', `deleteOrder(${i})`);
@@ -120,10 +120,10 @@ function showTable(jsonData) {
           deleteButton.innerHTML = `<i class="fas fa-trash-alt"></i> Törlés`;
 
         } else {
-          let editButtonTd = document.createElement("td");
-          let saveButton = document.createElement("button");
-          let deleteButtonTd = document.createElement("td");
-          let shippedButtonTd = document.createElement("td");
+          var editButtonTd = document.createElement("td");
+          var saveButton = document.createElement("button");
+          var deleteButtonTd = document.createElement("td");
+          var shippedButtonTd = document.createElement("td");
         }
 
         tr.appendChild(deleteButtonTd);
@@ -139,7 +139,7 @@ function editTds(num) {
 
 
 function deleteOrder(num) {
-    let id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
+    var id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
     if (!confirm("Biztos, hogy törli a megrendelést?")) {
         return;
     }
@@ -154,7 +154,7 @@ function deleteOrder(num) {
 }
 
 function changeStatusToShipped(num) {
-    let id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
+    var id = document.getElementById(`deletebutton${num}`).parentElement.parentElement['raw-data'].id;
     if (!confirm("Kiszállítottra állítja a megrendelés állapotát?")) {
         return;
     }
